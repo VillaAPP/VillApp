@@ -1,17 +1,19 @@
-package studio.waterwell.villaapp;
+package studio.waterwell.villaapp.Actividades;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import studio.waterwell.villaapp.Modelo.Usuario;
+import studio.waterwell.villaapp.R;
+
+public class Credenciales extends AppCompatActivity {
     private WebView browser;
 
-    // Inicia el WebView con los datos oportunos
     private void iniciarParteWeb(){
         RespuestaWeb respuestaWeb = new RespuestaWeb(getApplicationContext());
 
@@ -28,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    // TODO: Coger del bundle mandado por MainActivity el ArrayList de ubicaciones de toda la app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_credenciales);
         iniciarParteWeb();
     }
 
-    // Esta clase hay que crearla de verdad en un archivo java, así solo es de prueba
+    // TODO: Pasar esta clase a un archivo java de verdad
     class RespuestaWeb{
         private Context c;
 
@@ -50,10 +53,30 @@ public class MainActivity extends AppCompatActivity {
             t.show();
         }
 
+        // TODO: Guardar el ArrayList de ubicaciones de toda la app en el bundle
         @android.webkit.JavascriptInterface
-        public void datosUsuario(String user, String pass){
-            // TODO: Generar un objeto usuario con estos datos, guardarlo en la bd interna de la app
-            // TODO: y mandarlo por bundle a la actividad principal
+        public void datosUsuario(String estado, String user, String pass){
+            Usuario usuario = new Usuario(user, pass);
+
+            Intent i = new Intent();
+            i.setAction("android.intent.action.datosLogin");
+            Bundle bundle = new Bundle();
+
+            // Login
+            if(estado.equals("1"))
+                bundle.putBoolean("Registro", false);
+
+            // Registro
+            else
+                bundle.putBoolean("Registro", true);
+
+            bundle.putParcelable("Usuario", usuario);
+            i.putExtra("Bundle", bundle);
+
+            startActivity(i);
+
+            // Finalizo esta actividad para sacarla de la pila
+            finish();
         }
     }
 }
