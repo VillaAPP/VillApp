@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import studio.waterwell.villaapp.Mapa.Mapa;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
@@ -21,17 +22,25 @@ public class Principal extends AppCompatActivity
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
-    private TextView prueba;
+    private Mapa mapa;
 
     // Atributos necesarios
     private Usuario usuario;
+
+    // Crea el fragmento del mapa. Falta por centrar el mapa en una ubicacion concreta y ponerle los puntos
+    private void crearMapa(){
+        mapa = Mapa.newInstance();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmento, mapa)
+                .commit();
+    }
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos(){
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         usuario = bundle.getParcelable("Usuario");
-        prueba = (TextView) findViewById(R.id.texto_prueba);
-        prueba.setText(usuario.getUserName());
+
     }
 
 
@@ -57,30 +66,7 @@ public class Principal extends AppCompatActivity
 
         cargarDatos();
         cargarNavigationDrawer();
-    }
-
-    // Crea el menú de arriba (por defecto, se puede quitar)
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.principal, menu);
-        return true;
-    }
-
-    // Dice que pasa al clicarse una opcion del menú de arriba (por defecto, se puede quitar)
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        crearMapa();
     }
 
     // Dice que pasa al clicarse una opcion del menú de lateral (por defecto, se puede quitar)
