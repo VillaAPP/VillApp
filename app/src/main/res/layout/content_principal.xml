@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="studio.waterwell.villaapp.Actividades.Principal"
-    tools:showIn="@layout/app_bar_principal">
+    tools:showIn="@layout/app_bar_principal"
+    android:id="@+id/content_principal">
 
     <FrameLayout
-        android:id="@+id/fragmento"
+        android:id="@+id/fragmentoPpal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"

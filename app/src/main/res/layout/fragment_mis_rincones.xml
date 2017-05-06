@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_mis_rincones"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="studio.waterwell.villaapp.Fragmentos.FragMisRincones">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/pruebas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <Button
+            android:id="@+id/btn_pruebas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pruebas"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="42dp"
+            android:text="Button" />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_mapa_villa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="studio.waterwell.villaapp.Fragmentos.FragMapa2">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frag_mapa"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/tipo_mapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar tipo mapa"
+            android:layout_above="@+id/frag_mapa"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</FrameLayout>

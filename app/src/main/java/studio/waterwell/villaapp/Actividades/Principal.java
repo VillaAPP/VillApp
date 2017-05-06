@@ -1,53 +1,48 @@
 package studio.waterwell.villaapp.Actividades;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
+
+
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import studio.waterwell.villaapp.Mapa.Mapa;
+import studio.waterwell.villaapp.Fragmentos.FragMapa;
+import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
+import studio.waterwell.villaapp.Fragmentos.FragRincones;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 public class Principal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     // Componentes de la vista
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
-    private Mapa mapa;
-    private GoogleMap gMap;
+
+    // Componentes de gragmentos
+    private FragmentManager fragmentManager;  // Se encarga de cambiar los fragmentos de la vista
+    private Fragment[] fragmentos;            // Almacena los distintos fragmentos de la vista
+    private Fragment fragmentoActual;         // Fragmento que esta siendo usado por la actividad
+
+    // Encargados de acceder a una posicion de Fragment[] fragmentos
+    final private  int MAPA = 0;
+    final private  int LISTA_RINCONES = 1;
+    final private  int RINCONES_VISITADOS = 2;
+    private int nFragActual;
 
     // Atributos necesarios
     private Usuario usuario;
-
-    // Crea el fragmento del mapa. Falta por centrar el mapa en una ubicacion concreta y ponerle los puntos
-    private void crearMapa() {
-        mapa = Mapa.newInstance();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmento, mapa)
-                .commit();
-
-        mapa.getMapAsync(this);
-    }
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
@@ -56,6 +51,16 @@ public class Principal extends AppCompatActivity
 
     }
 
+
+    // Cambia la cabecera de la barra por los valores del usuario logeado
+    private void actualizarCabeceraUser(){
+        // Obtengo la vista de la cabecera que forma el navigationView
+        View auxview = navigationView.getHeaderView(0);
+
+        // Cargo los campos user y email que forma la cabecera y les cambio el valor
+        TextView user = (TextView) auxview.findViewById(R.id.nav_usuario);
+        user.setText(usuario.getUserName());
+    }
 
     // Crea la barra lateral que se desplaza con el dedo para moverse en opciones
     private void cargarNavigationDrawer() {
@@ -69,9 +74,17 @@ public class Principal extends AppCompatActivity
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        actualizarCabeceraUser();
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void cargarFragmentos(){
+        fragmentManager = getSupportFragmentManager();
+        fragmentos = new Fragment[3];
+        fragmentos[MAPA] = FragMapa.newInstance();
+        fragmentos[LISTA_RINCONES] = FragRincones.newInstance();
+        fragmentos[RINCONES_VISITADOS] = FragMisRincones.newInstance();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +92,16 @@ public class Principal extends AppCompatActivity
 
         cargarDatos();
         cargarNavigationDrawer();
-        crearMapa();
+
+        cargarFragmentos();
+
+        // Cargo como fragmento inicial el mapa de la villa
+        fragmentoActual = fragmentos[MAPA];
+        nFragActual = MAPA;
+        fragmentManager.beginTransaction()
+                .add(R.id.fragmentoPpal, fragmentoActual)
+                .commit();
+        getSupportActionBar().setTitle("Mapa de la Villa");
     }
 
     // Dice que pasa al clicarse una opcion del menú de lateral (por defecto, se puede quitar)
@@ -89,18 +111,23 @@ public class Principal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        // Guardo el fragmento que estaba usando
+        guardarFragmentoModificado();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_mapa) {
+            fragmentoActual = fragmentos[MAPA];
+            nFragActual = MAPA;
+            cambiarFragmento(fragmentoActual, "Mapa de la Villa");
+        }
+        else if (id == R.id.nav_lista_lugares) {
+            fragmentoActual = fragmentos[LISTA_RINCONES];
+            nFragActual = LISTA_RINCONES;
+            cambiarFragmento(fragmentoActual, "Rincones de la Villa");
+        }
+        else if (id == R.id.nav_lista_visitados) {
+            fragmentoActual = fragmentos[RINCONES_VISITADOS];
+            nFragActual = RINCONES_VISITADOS;
+            cambiarFragmento(fragmentoActual, "Rincones visitados");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -108,42 +135,21 @@ public class Principal extends AppCompatActivity
         return true;
     }
 
+    // Se encarga de cambiar los fragmentos de la actividad
+    private void cambiarFragmento(Fragment fragmento, String nombre){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentoPpal, fragmento)
+                .commit();
+        getSupportActionBar().setTitle(nombre);
+    }
+
+    // Al cambiar de fragmento, me encargo de guardar el que ya he usado
+    private void guardarFragmentoModificado(){
+        fragmentos[nFragActual] = fragmentoActual;
+    }
+
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        gMap = googleMap;
+    public void onBackPressed() {
 
-        // Asigno que se pueda hacer zoom
-        gMap.getUiSettings().setZoomControlsEnabled(true);
-
-        // Permite ver tu ubicacion
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            gMap.getUiSettings().setMyLocationButtonEnabled(true);
-            gMap.setMyLocationEnabled(true);
-        }
-
-        // Evita que el user al pinchar en las marcas salgan fuera de la app
-        gMap.getUiSettings().setMapToolbarEnabled(false);
-
-        // Establezco el zoom minimo a 16
-        gMap.setMinZoomPreference(16);
-
-
-        // Ubicacion de prueba añadida: Puerta del Sol
-        LatLng cali = new LatLng(40.4169473, -3.7035284999999476);
-        gMap.addMarker(new MarkerOptions()
-                .position(cali)
-                .title("Puerta del Sol")
-        );
-
-        // TODO: Obtener la ubicacion del user y  hacer como con el LatLng cali
-
-        // Posicion de la camara de prueba: Puerta del sol
-        CameraPosition cameraPosition = CameraPosition.builder()
-                .target(cali)
-                .zoom(16)
-                .build();
-
-        // Mueve la cámara al lugar establecido
-        gMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 }
