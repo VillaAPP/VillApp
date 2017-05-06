@@ -36,9 +36,14 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
     private GoogleMap gMap;
     private Marker[] marcas;
+    private Location location;
+    private LocationManager locationManager;
+
+    private boolean centrar = true;
 
     // Latitud y longitud de mi posicion actual
     private Marker miMarca;
+    private LatLng misCoordenadas;
     private double lat = 0.0;
     private double lng = 0.0;
 
@@ -93,22 +98,29 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         // Asigno que se pueda hacer zoom
         gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        gMap.setMinZoomPreference(14);
         gMap.getUiSettings().setMapToolbarEnabled(false);
         miUbicacion();
     }
 
-    private void agregarMarcador(double lat, double lng) {
-        LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+    private void agregarMiMarcador(double lat, double lng) {
+        misCoordenadas = new LatLng(lat, lng);
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16);
+
         if (miMarca != null)
             miMarca.remove();
 
         miMarca = gMap.addMarker(new MarkerOptions()
-                .position(coordenadas)
+                .position(misCoordenadas)
                 .title("Ubicación actual")
         );
 
-        gMap.animateCamera(miUbicacion);
+        // Una vez centrada la camara en nuestra ubicación se desactiva la opcion hasta que el desea volver a centrar
+        if(centrar){
+            gMap.animateCamera(miUbicacion);
+            centrar = false;
+        }
+
     }
 
     // Actualiza longitud y latitud de la ubicacion del usuario
@@ -116,7 +128,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         if (location != null) {
             lat = location.getLatitude();
             lng = location.getLongitude();
-            agregarMarcador(lat, lng);
+            agregarMiMarcador(lat, lng);
         }
     }
 
@@ -151,11 +163,12 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
         actualizarUbicacion(location);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 8000, 0, locListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locListener);
     }
 
     public void cambiarMapa(){
@@ -165,5 +178,9 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         else
             gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+    }
+
+    public void volverUbicacion(){
+        centrar = true;
     }
 }

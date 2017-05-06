@@ -21,11 +21,21 @@
         </FrameLayout>
 
         <Button
-            android:id="@+id/tipo_mapa"
+            android:id="@+id/btn_tmapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cambiar tipo mapa"
             android:layout_above="@+id/frag_mapa"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="37dp" />
+
+        <Button
+            android:id="@+id/btn_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/frag_mapa"
+            android:layout_marginStart="29dp"
+            android:layout_toEndOf="@+id/btn_tmapa"
+            android:text="Mi ubicacion" />
     </RelativeLayout>
 </FrameLayout>

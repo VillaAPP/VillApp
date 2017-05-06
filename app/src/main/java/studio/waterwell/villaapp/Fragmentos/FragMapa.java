@@ -8,17 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.SupportMapFragment;
-
-import java.util.Map;
-
 import studio.waterwell.villaapp.R;
 
 public class FragMapa extends Fragment {
 
     private Mapa mapa;
     private Button boton;
+    private Button boton2;
 
     public FragMapa() {
         // Required empty public constructor
@@ -48,7 +44,9 @@ public class FragMapa extends Fragment {
                 .add(R.id.frag_mapa, mapa)
                 .commit();
 
-        boton = (Button) v.findViewById(R.id.tipo_mapa);
+        boton = (Button) v.findViewById(R.id.btn_tmapa);
+
+        boton2 = (Button) v.findViewById(R.id.btn_pos);
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +54,14 @@ public class FragMapa extends Fragment {
                 mapa.cambiarMapa();
             }
         });
+
+        boton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapa.volverUbicacion();
+            }
+        });
+
         return v;
     }
 
