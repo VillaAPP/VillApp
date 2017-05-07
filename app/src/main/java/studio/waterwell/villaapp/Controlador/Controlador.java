@@ -2,7 +2,10 @@ package studio.waterwell.villaapp.Controlador;
 
 import android.content.Context;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import studio.waterwell.villaapp.BD.DAOUsuario;
+import studio.waterwell.villaapp.BD.ObtenerUbicacion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 
 /**
@@ -31,6 +34,12 @@ public class Controlador {
         studio.waterwell.villaapp.BD.Usuario user = new studio.waterwell.villaapp.BD.Usuario(contexto, "Usuario", null, 1);
         DAOUsuario DAOUsuario = new DAOUsuario(user);
         DAOUsuario.guardarUsuario(usuario);
+    }
+
+    // Llama a la API de Google que transforma una latitud/longitud en una direccion
+    public void ObtenerUbicacion(LatLng latLng){
+        ObtenerUbicacion prueba = new ObtenerUbicacion(contexto);
+        prueba.execute(latLng);
     }
 
 }

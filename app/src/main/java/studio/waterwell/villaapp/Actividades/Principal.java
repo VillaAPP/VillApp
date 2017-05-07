@@ -15,14 +15,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
 import studio.waterwell.villaapp.Fragmentos.FragRincones;
+import studio.waterwell.villaapp.Fragmentos.ICambios;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 public class Principal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ICambios {
 
     // Componentes de la vista
     private Toolbar toolbar;
@@ -32,17 +36,15 @@ public class Principal extends AppCompatActivity
 
     // Componentes de gragmentos
     private FragmentManager fragmentManager;  // Se encarga de cambiar los fragmentos de la vista
-    private Fragment[] fragmentos;            // Almacena los distintos fragmentos de la vista
-    private Fragment fragmentoActual;         // Fragmento que esta siendo usado por la actividad
+    private FragMapa fragMapa;
+    private FragRincones fragRincones;
+    private FragMisRincones fragMisRincones;
 
-    // Encargados de acceder a una posicion de Fragment[] fragmentos
-    final private  int MAPA = 0;
-    final private  int LISTA_RINCONES = 1;
-    final private  int RINCONES_VISITADOS = 2;
-    private int nFragActual;
 
     // Atributos necesarios
     private Usuario usuario;
+    private boolean moverUbicacion;
+    private LatLng ubicacion;
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
@@ -79,55 +81,59 @@ public class Principal extends AppCompatActivity
     }
 
     private void cargarFragmentos(){
+        // Inicio los fragmentos
         fragmentManager = getSupportFragmentManager();
-        fragmentos = new Fragment[3];
-        fragmentos[MAPA] = FragMapa.newInstance();
-        fragmentos[LISTA_RINCONES] = FragRincones.newInstance();
-        fragmentos[RINCONES_VISITADOS] = FragMisRincones.newInstance();
+        fragMapa = FragMapa.newInstance();
+        fragRincones = FragRincones.newInstance();
+        fragMisRincones= FragMisRincones.newInstance();
+
+        // Los coloco en el controlador de fragmentos y oculto todos menos el del mapa
+        fragmentManager.beginTransaction()
+                .add(R.id.fragmentoPpal, fragMapa)
+                .add(R.id.fragmentoPpal, fragRincones)
+                .hide(fragRincones)
+                .add(R.id.fragmentoPpal, fragMisRincones)
+                .hide(fragMisRincones)
+                .commit();
+
+        // La variable que indica que hay que mover el mapa se pone a falso
+        moverUbicacion = false;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-
         cargarDatos();
         cargarNavigationDrawer();
 
         cargarFragmentos();
-
-        // Cargo como fragmento inicial el mapa de la villa
-        fragmentoActual = fragmentos[MAPA];
-        nFragActual = MAPA;
-        fragmentManager.beginTransaction()
-                .add(R.id.fragmentoPpal, fragmentoActual)
-                .commit();
         getSupportActionBar().setTitle("Mapa de la Villa");
     }
 
-    // Dice que pasa al clicarse una opcion del menú de lateral (por defecto, se puede quitar)
+    // Dice que pasa al clicarse una opcion del menú de lateral
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        // Guardo el fragmento que estaba usando
-        guardarFragmentoModificado();
-
         if (id == R.id.nav_mapa) {
-            fragmentoActual = fragmentos[MAPA];
-            nFragActual = MAPA;
-            cambiarFragmento(fragmentoActual, "Mapa de la Villa");
+            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
+
+            // TODO: LA IDEA ES QUE ESTO CAMBIE LA POSICION DE LA CAMARA DEL MAPA CUANDO SELECCIONE VER UN SITIO DESDE fragRincones
+            if(moverUbicacion){
+                // Ubicacion de prueba
+                fragMapa.moverUbicacion(ubicacion);
+            }
         }
         else if (id == R.id.nav_lista_lugares) {
-            fragmentoActual = fragmentos[LISTA_RINCONES];
-            nFragActual = LISTA_RINCONES;
-            cambiarFragmento(fragmentoActual, "Rincones de la Villa");
+            // TODO: Este boolean cambiará con un evento del fragmento que reciba los datos pertinentes y será modificado desde un metodo de la interfaz de principal
+            moverUbicacion = true;
+            ubicacion = new LatLng(40.39991817, -3.6941729);
+            cambiarFragmento(fragRincones,fragMapa,fragMisRincones, "Rincones de la Villa");
         }
         else if (id == R.id.nav_lista_visitados) {
-            fragmentoActual = fragmentos[RINCONES_VISITADOS];
-            nFragActual = RINCONES_VISITADOS;
-            cambiarFragmento(fragmentoActual, "Rincones visitados");
+            cambiarFragmento(fragMisRincones,fragMapa,fragRincones, "Rincones visitados");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -136,20 +142,21 @@ public class Principal extends AppCompatActivity
     }
 
     // Se encarga de cambiar los fragmentos de la actividad
-    private void cambiarFragmento(Fragment fragmento, String nombre){
+    private void cambiarFragmento(Fragment mostrar,Fragment ocultar1,Fragment ocultar2, String nombre){
         fragmentManager.beginTransaction()
-                .replace(R.id.fragmentoPpal, fragmento)
+                .show(mostrar)
+                .hide(ocultar1)
+                .hide(ocultar2)
                 .commit();
         getSupportActionBar().setTitle(nombre);
     }
 
-    // Al cambiar de fragmento, me encargo de guardar el que ya he usado
-    private void guardarFragmentoModificado(){
-        fragmentos[nFragActual] = fragmentoActual;
-    }
+    @Override
+    public void onBackPressed() {}
 
     @Override
-    public void onBackPressed() {
-
+    public void obtenerUbicacion(LatLng latLng) {
+        Controlador controlador = new Controlador(getApplicationContext());
+        controlador.ObtenerUbicacion(latLng);
     }
 }

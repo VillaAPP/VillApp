@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -39,11 +40,13 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     private Location location;
     private LocationManager locationManager;
 
-    private boolean centrar = true;
+    private boolean centrar;
+    private boolean mover;
 
     // Latitud y longitud de mi posicion actual
     private Marker miMarca;
     private LatLng misCoordenadas;
+    private LatLng ubicacion = new LatLng(0,0);
     private double lat = 0.0;
     private double lng = 0.0;
 
@@ -71,7 +74,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     // Prueba
     public static Mapa newInstance() {
         Mapa fragment = new Mapa();
-
         return fragment;
     }
 
@@ -79,8 +81,9 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            // mParam1 = getArguments().getString(ARG_PARAM1);
+           //
         }
+        centrar = true;
     }
 
     @Override
@@ -92,14 +95,23 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         return v;
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
+
+        LatLng aux = new LatLng(40.39991817, -3.6941729);
+
+        gMap.addMarker(new MarkerOptions()
+                .position(aux)
+                .title("Punto aux")
+        );
 
         // Asigno que se pueda hacer zoom
         gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         gMap.setMinZoomPreference(14);
         gMap.getUiSettings().setMapToolbarEnabled(false);
+
         miUbicacion();
     }
 
@@ -183,4 +195,18 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void volverUbicacion(){
         centrar = true;
     }
+
+    /*
+    * Estos dos metodos son pruebas para ver como reubicar la camara en mi ubicacion
+    * y poner la camara del mapa en un punto
+    */
+    public LatLng getMisCoordenadas(){
+        return misCoordenadas;
+    }
+
+    public void ubicarse(LatLng latLng){
+
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+    }
+
 }
