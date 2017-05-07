@@ -3,10 +3,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_mapa"
-            android:icon="@android:drawable/ic_menu_mapmode"
-            android:title="Mapa de la Villa" />
-        <item
             android:id="@+id/nav_lista_lugares"
             android:icon="@android:drawable/ic_dialog_map"
             android:title="Rincones de la villa" />

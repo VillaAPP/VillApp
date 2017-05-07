@@ -2,10 +2,14 @@ package studio.waterwell.villaapp.Fragmentos;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import studio.waterwell.villaapp.R;
 
@@ -23,6 +27,12 @@ public class FragRincones extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ICambios cambios;
+
+    private Button boton1;
+    private Button boton2;
+    private Button boton3;
+
 
     public FragRincones() {
         // Required empty public constructor
@@ -66,7 +76,38 @@ public class FragRincones extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_rincones, container, false);
 
+        boton1 = (Button) v.findViewById(R.id.ubicacion1);
+        boton2 = (Button) v.findViewById(R.id.ubicacion2);
+        boton3 = (Button) v.findViewById(R.id.ubicacion3);
+
+        boton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambios.mandarCoordenadas(new LatLng(40.39991817, -3.6941729));
+            }
+        });
+
+        boton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambios.mandarCoordenadas(new LatLng(40.4166635, -3.7041687));
+            }
+        });
+
+        boton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambios.mandarCoordenadas(new LatLng(40.4072103, -3.6945893));
+            }
+        });
+
+
         return v;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cambios = (ICambios) getActivity();
+    }
 }

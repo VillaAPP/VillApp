@@ -94,11 +94,22 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
 
+        // Ubicaciones de prueba
         LatLng aux = new LatLng(40.39991817, -3.6941729);
+        LatLng aux2 = new LatLng(40.4166635, -3.7041687);
+        LatLng aux3 = new LatLng(40.4072103, -3.6945893);
 
         gMap.addMarker(new MarkerOptions()
                 .position(aux)
-                .title("Punto aux")
+                .title("Calle Delicias")
+        );
+        gMap.addMarker(new MarkerOptions()
+                .position(aux2)
+                .title("Plaza del Sol")
+        );
+        gMap.addMarker(new MarkerOptions()
+                .position(aux3)
+                .title("Plaza de Atocha")
         );
 
         // Asigno que se pueda hacer zoom
@@ -111,7 +122,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
     private void agregarMiMarcador(double lat, double lng) {
         misCoordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 15);
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16);
 
         if (miMarca != null)
             miMarca.remove();

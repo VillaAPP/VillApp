@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(i);
 
-                // Finalizo esta actividad para sacarla de la pila
                 finish();
             }
         }, 3000);

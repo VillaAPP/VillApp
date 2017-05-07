@@ -36,12 +36,10 @@ public class Principal extends AppCompatActivity
     private FragMapa fragMapa;
     private FragRincones fragRincones;
     private FragMisRincones fragMisRincones;
-
+    private boolean atras;                     // Se encarga de ir atrás al pulsar atras o cerrar la app
 
     // Atributos necesarios
     private Usuario usuario;
-    private boolean moverUbicacion;
-    private LatLng ubicacion;
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
@@ -94,7 +92,7 @@ public class Principal extends AppCompatActivity
                 .commit();
 
         // La variable que indica que hay que mover el mapa se pone a falso
-        moverUbicacion = false;
+        atras = false;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,25 +112,14 @@ public class Principal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_mapa) {
-            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
 
-            // TODO: LA IDEA ES QUE ESTO CAMBIE LA POSICION DE LA CAMARA DEL MAPA CUANDO SELECCIONE VER UN SITIO DESDE fragRincones
-            if(moverUbicacion){
-                // Ubicacion de prueba
-                fragMapa.moverUbicacion(ubicacion);
-            }
-        }
-        else if (id == R.id.nav_lista_lugares) {
-            // TODO: Este boolean cambiará con un evento del fragmento que reciba los datos pertinentes y será modificado desde un metodo de la interfaz de principal
-            moverUbicacion = true;
-            ubicacion = new LatLng(40.39991817, -3.6941729);
+        if (id == R.id.nav_lista_lugares) {
             cambiarFragmento(fragRincones,fragMapa,fragMisRincones, "Rincones de la Villa");
         }
-        else if (id == R.id.nav_lista_visitados) {
+        else if (id == R.id.nav_lista_visitados)
             cambiarFragmento(fragMisRincones,fragMapa,fragRincones, "Rincones visitados");
-        }
 
+        atras = true;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -150,14 +137,30 @@ public class Principal extends AppCompatActivity
 
     // Controla que sucede cuando se pulsa el boton de atras
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+
+        if(!atras)
+            finish();
+
+        else{
+            atras = false;
+            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
+        }
+    }
 
     // Implementar el metodo de la interfaz desde aqui
-
 
     @Override
     public void obtenerUbicacion(LatLng latLng) {
         Controlador controlador = new Controlador(getApplicationContext());
         controlador.ObtenerUbicacion(latLng);
+
+    }
+
+    @Override
+    public void mandarCoordenadas(LatLng latLng) {
+        atras = false;
+        fragMapa.moverUbicacion(latLng);
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
     }
 }
