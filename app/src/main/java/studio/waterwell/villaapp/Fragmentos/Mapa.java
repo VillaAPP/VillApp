@@ -4,16 +4,13 @@ package studio.waterwell.villaapp.Fragmentos;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +20,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -41,12 +37,10 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     private LocationManager locationManager;
 
     private boolean centrar;
-    private boolean mover;
 
     // Latitud y longitud de mi posicion actual
     private Marker miMarca;
     private LatLng misCoordenadas;
-    private LatLng ubicacion = new LatLng(0,0);
     private double lat = 0.0;
     private double lng = 0.0;
 
@@ -117,7 +111,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
     private void agregarMiMarcador(double lat, double lng) {
         misCoordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16);
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 15);
 
         if (miMarca != null)
             miMarca.remove();

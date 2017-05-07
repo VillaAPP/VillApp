@@ -1,7 +1,6 @@
 package studio.waterwell.villaapp.Actividades;
 
 
-
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,9 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
@@ -91,8 +88,8 @@ public class Principal extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .add(R.id.fragmentoPpal, fragMapa)
                 .add(R.id.fragmentoPpal, fragRincones)
-                .hide(fragRincones)
                 .add(R.id.fragmentoPpal, fragMisRincones)
+                .hide(fragRincones)
                 .hide(fragMisRincones)
                 .commit();
 
@@ -151,8 +148,12 @@ public class Principal extends AppCompatActivity
         getSupportActionBar().setTitle(nombre);
     }
 
+    // Controla que sucede cuando se pulsa el boton de atras
     @Override
     public void onBackPressed() {}
+
+    // Implementar el metodo de la interfaz desde aqui
+
 
     @Override
     public void obtenerUbicacion(LatLng latLng) {

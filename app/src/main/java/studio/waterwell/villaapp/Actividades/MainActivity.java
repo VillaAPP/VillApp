@@ -1,14 +1,9 @@
 package studio.waterwell.villaapp.Actividades;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Modelo.Usuario;

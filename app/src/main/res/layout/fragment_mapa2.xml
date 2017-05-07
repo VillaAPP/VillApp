@@ -27,16 +27,16 @@
             android:text="Cambiar mapa"
             android:layout_above="@+id/frag_mapa"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp" />
+            android:layout_marginStart="17dp" />
 
         <Button
             android:id="@+id/btn_pos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reubicar"
+            android:layout_marginEnd="21dp"
             android:layout_above="@+id/frag_mapa"
-            android:layout_toStartOf="@+id/btn_prueba"
-            android:layout_marginEnd="29dp" />
+            android:layout_toStartOf="@+id/btn_prueba" />
 
         <Button
             android:id="@+id/btn_prueba"
@@ -45,7 +45,7 @@
             android:text="Prueba"
             android:layout_above="@+id/frag_mapa"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginEnd="18dp" />
 
     </RelativeLayout>
 </FrameLayout>
