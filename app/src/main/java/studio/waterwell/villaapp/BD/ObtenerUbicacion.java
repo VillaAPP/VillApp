@@ -33,7 +33,7 @@ public class ObtenerUbicacion extends AsyncTask<LatLng, Void, String>{
     protected String doInBackground(LatLng... params) {
         String direccion = "";
         try {
-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + params[0].latitude + "," + params[0].longitude + "&kAIzaSyA6mYcZSwlZ0bj5Ygg6Tvp3S0785oqN2dE");
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + params[0].latitude + "," + params[0].longitude + "&AIzaSyA0ZT_DPBr2ZkxukV2WZDAOpUwBx-sZwnQ");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             // Habilito el poder recibir JSON a la conexión

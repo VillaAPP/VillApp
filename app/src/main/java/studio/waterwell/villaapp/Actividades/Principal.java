@@ -14,6 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.HashMap;
+import java.util.List;
+
 import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
@@ -25,32 +29,38 @@ import studio.waterwell.villaapp.R;
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ICambios {
 
-    // Componentes de la vista
+    /* Componentes de la vista */
+
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
-    // Componentes de gragmentos
-    private FragmentManager fragmentManager;  // Se encarga de cambiar los fragmentos de la vista
+    /* Componentes de fragmentos */
+
+    // Se encarga de cambiar los fragmentos de la vista
+    private FragmentManager fragmentManager;
     private FragMapa fragMapa;
     private FragRincones fragRincones;
     private FragMisRincones fragMisRincones;
-    private boolean atras;                     // Se encarga de ir atrás al pulsar atras o cerrar la app
+    // Se encarga de ir atrás al pulsar atras o cerrar la app
+    private boolean atras;
 
-    // Atributos necesarios
+    /* Atributos necesarios del modelo */
+    
+    private Controlador controlador;
     private Usuario usuario;
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         usuario = bundle.getParcelable("Usuario");
-
     }
 
 
     // Cambia la cabecera de la barra por los valores del usuario logeado
     private void actualizarCabeceraUser(){
+
         // Obtengo la vista de la cabecera que forma el navigationView
         View auxview = navigationView.getHeaderView(0);
 
@@ -76,6 +86,7 @@ public class Principal extends AppCompatActivity
     }
 
     private void cargarFragmentos(){
+
         // Inicio los fragmentos
         fragmentManager = getSupportFragmentManager();
         fragMapa = FragMapa.newInstance();
@@ -98,28 +109,28 @@ public class Principal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        controlador = new Controlador(getApplicationContext());
         cargarDatos();
         cargarNavigationDrawer();
-
         cargarFragmentos();
-        getSupportActionBar().setTitle("Mapa de la Villa");
+        getSupportActionBar().setTitle(getString(R.string.fragmento_mapa));
     }
 
     // Dice que pasa al clicarse una opcion del menú de lateral
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-        if (id == R.id.nav_lista_lugares) {
-            cambiarFragmento(fragRincones,fragMapa,fragMisRincones, "Rincones de la Villa");
-        }
-        else if (id == R.id.nav_lista_visitados)
-            cambiarFragmento(fragMisRincones,fragMapa,fragRincones, "Rincones visitados");
-
         atras = true;
+
+        if (id == R.id.nav_lista_lugares)
+            cambiarFragmento(fragRincones,fragMapa,fragMisRincones, getString(R.string.fragmento_rincones));
+
+        else if (id == R.id.nav_lista_visitados)
+            cambiarFragmento(fragMisRincones,fragMapa,fragRincones, getString(R.string.fragmento_mis_rincones));
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -139,28 +150,35 @@ public class Principal extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
+        // Si estamos viendo el mapa de google la app se minimiza
         if(!atras)
             finish();
 
+        // Si no, se simula ir atras cargando el fragmento del mapa
         else{
             atras = false;
-            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
+            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
         }
     }
 
-    // Implementar el metodo de la interfaz desde aqui
-
+    // Se llama en FragMapa para pasar del mapa a Principal las coordenadas de mi ubicacion actual
     @Override
     public void obtenerUbicacion(LatLng latLng) {
-        Controlador controlador = new Controlador(getApplicationContext());
-        controlador.ObtenerUbicacion(latLng);
-
+        controlador.obtenerUbicacion(latLng);
     }
 
+    // Manda las coordenadas desde el fragmento MisRonces a principal para trazar una ruta
     @Override
     public void mandarCoordenadas(LatLng latLng) {
         atras = false;
         fragMapa.moverUbicacion(latLng);
-        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, "Mapa de la Villa");
+        controlador.obtenerRuta(this, latLng, fragMapa.obtenerMiUbicacion());
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+    }
+
+    // Manda desde el AsynTack ObtenerRuta el conjunto de puntos que dibujan en el mapa la ruta desde mi ubicacion hasta el destino
+    @Override
+    public void obtenerRuta(List<List<HashMap<String, String>>> ruta) {
+        fragMapa.pasarRuta(ruta);
     }
 }

@@ -1,11 +1,18 @@
 <resources>
+
     <string name="app_name">VillaApp</string>
     <string name="title_activity_principal">VillaApp</string>
 
     <string name="navigation_drawer_open">Abrir menu lateral</string>
     <string name="navigation_drawer_close">Cerrar menu lateral</string>
+    <string name="navigation_rincones">Rincones de la villa</string>
+    <string name="navigation_mis_rincones">Lugares visitados</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_progresBar_inicio">Cargando datos del sistema</string>
+    <string name="txt_progresBar_login">Cargando datos del usuario</string>
+
+    <string name="fragmento_mapa">Mapa de la Villa</string>
+    <string name="fragmento_rincones">Rincones de la Villa</string>
+    <string name="fragmento_mis_rincones">Rincones visitados</string>
 
 </resources>

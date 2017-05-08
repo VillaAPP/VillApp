@@ -7,7 +7,7 @@
     tools:context=".Actividades.CargaDatosLogin">
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBarLogin"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,11 +15,11 @@
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_barLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar2"
+        android:layout_below="@+id/progressBarLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:text="Cargando datos de usuario" />
+        android:text="@string/txt_progresBar_login" />
 </RelativeLayout>

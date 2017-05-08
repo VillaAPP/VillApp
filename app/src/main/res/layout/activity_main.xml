@@ -7,7 +7,7 @@
     tools:context=".Actividades.MainActivity">
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarInicio"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,11 +15,11 @@
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_barInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/progressBarInicio"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Cargando datos de la aplicacion" />
+        android:text="@string/txt_progresBar_inicio" />
 </RelativeLayout>

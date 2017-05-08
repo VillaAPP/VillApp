@@ -3,7 +3,7 @@
     android:id="@+id/frag_mapa_villa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="studio.waterwell.villaapp.Fragmentos.FragMapa2">
+    tools:context="studio.waterwell.villaapp.Fragmentos.FragMapa">
 
     <!-- TODO: Update blank fragment layout -->
 

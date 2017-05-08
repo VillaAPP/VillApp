@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.HashMap;
+import java.util.List;
+
 import studio.waterwell.villaapp.R;
 
 public class FragMapa extends Fragment {
@@ -54,7 +57,6 @@ public class FragMapa extends Fragment {
         boton2 = (Button) v.findViewById(R.id.btn_pos);
         boton3 = (Button) v.findViewById(R.id.btn_prueba);
 
-
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +82,18 @@ public class FragMapa extends Fragment {
         return v;
     }
 
+    // Devuelve las coordenadas actuales del usuario obtenidas desde el mapa
+    public LatLng obtenerMiUbicacion(){
+        return mapa.getMisCoordenadas();
+    }
+
+    // Recibe desde principal el conjunto de puntos que forman la ruta para que el mapa lo dibuje
+    public void pasarRuta(List<List<HashMap<String, String>>> ruta){
+        mapa.setRuta(ruta);
+    }
+
+
+    // Recibe desde principal las coordenadas donde el mapa debe poner la camara
     public void moverUbicacion(LatLng latLng){
         mapa.ubicarse(latLng);
     }

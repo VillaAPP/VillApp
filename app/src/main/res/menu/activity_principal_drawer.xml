@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_lista_lugares"
             android:icon="@android:drawable/ic_dialog_map"
-            android:title="Rincones de la villa" />
+            android:title="@string/navigation_rincones" />
         <item
             android:id="@+id/nav_lista_visitados"
             android:icon="@drawable/ic_menu_share"
-            android:title="Lugares visitados" />
+            android:title="@string/navigation_mis_rincones" />
     </group>
 
 </menu>

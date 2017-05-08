@@ -5,6 +5,7 @@ package studio.waterwell.villaapp.Fragmentos;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,6 +24,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
@@ -38,36 +45,37 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
     private boolean centrar;
 
-    // Latitud y longitud de mi posicion actual
+    /* Latitud y longitud de mi posicion actual */
+
     private Marker miMarca;
     private LatLng misCoordenadas;
     private double lat = 0.0;
     private double lng = 0.0;
 
+    /* Ruta que une dos puntos del mapa */
+
+    private List<List<HashMap<String, String>>> ruta;
+    private PolylineOptions lineOptions;
+    private Polyline polyFinal;
+
     public Mapa() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Mapa.
-     */
     // TODO: Rename and change types and number of parameters
     public static Mapa newInstance(String param1, String param2) {
         Mapa fragment = new Mapa();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     // Prueba
     public static Mapa newInstance() {
         Mapa fragment = new Mapa();
+
         return fragment;
     }
 
@@ -77,6 +85,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         if (getArguments() != null) {
            //
         }
+        lineOptions = null;
         centrar = true;
     }
 
@@ -94,7 +103,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
 
-        // Ubicaciones de prueba
         LatLng aux = new LatLng(40.39991817, -3.6941729);
         LatLng aux2 = new LatLng(40.4166635, -3.7041687);
         LatLng aux3 = new LatLng(40.4072103, -3.6945893);
@@ -120,6 +128,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         miUbicacion();
     }
 
+    // Coloca el icono en el mapa donde esta el usuario
     private void agregarMiMarcador(double lat, double lng) {
         misCoordenadas = new LatLng(lat, lng);
         CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16);
@@ -188,6 +197,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locListener);
     }
 
+    // Cambia entre mapa satelite y normal
     public void cambiarMapa(){
 
         if(gMap.getMapType() == GoogleMap.MAP_TYPE_SATELLITE)
@@ -197,21 +207,69 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
             gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
     }
 
+    // Centra la camara en el usuario
     public void volverUbicacion(){
         centrar = true;
     }
 
-    /*
-    * Estos dos metodos son pruebas para ver como reubicar la camara en mi ubicacion
-    * y poner la camara del mapa en un punto
-    */
+   // Devuelve las coordenadas del usuario
     public LatLng getMisCoordenadas(){
         return misCoordenadas;
     }
 
+    // Ubica la camara en una posicion concreta
     public void ubicarse(LatLng latLng){
-
         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
     }
 
+    // Fija la ruta
+    public void setRuta(List<List<HashMap<String, String>>> ruta) {
+        this.ruta = ruta;
+        dibujaRuta(this.ruta);
+    }
+
+    // Dibuja una ruta en el mapa
+    private void dibujaRuta(List<List<HashMap<String, String>>> ruta) {
+        ArrayList<LatLng> puntos  = new ArrayList<LatLng>();
+
+        if(lineOptions != null)
+            borraRuta();
+
+
+        // Recorro toda la ruta otbtenida
+        for(int i=0;i<ruta.size();i++){
+            puntos = new ArrayList<LatLng>();
+            lineOptions = new PolylineOptions();
+
+            // Consigo el path de la ruta
+            List<HashMap<String, String>> path = ruta.get(i);
+
+            // Consigo todos los puntos de la ruta a trazar
+            for(int j=0;j<path.size();j++){
+                HashMap<String,String> punto = path.get(j);
+
+                double lat = Double.parseDouble(punto.get("lat"));
+                double lng = Double.parseDouble(punto.get("lng"));
+
+                LatLng posicion = new LatLng(lat, lng);
+
+                // Por ultimo, añado todos los datos al array
+                puntos.add(posicion);
+            }
+
+            // Termino de añadir todos los puntos y el color de la ruta en el objeto lineOptions
+            lineOptions.addAll(puntos);
+            lineOptions.width(4);
+            lineOptions.color(Color.GREEN);
+        }
+
+        // Dibujo en mi objeto googleMap la ruta y guardo en polyFinal el resultado por si quiero borrar la ruta
+        polyFinal = gMap.addPolyline(lineOptions);
+    }
+
+    // Borra la ruta del mapa
+    public void borraRuta(){
+        polyFinal.remove();
+        lineOptions = null;
+    }
 }

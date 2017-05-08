@@ -5,7 +5,9 @@ import android.content.Context;
 import com.google.android.gms.maps.model.LatLng;
 
 import studio.waterwell.villaapp.BD.DAOUsuario;
+import studio.waterwell.villaapp.BD.ObtenerRuta;
 import studio.waterwell.villaapp.BD.ObtenerUbicacion;
+import studio.waterwell.villaapp.Fragmentos.ICambios;
 import studio.waterwell.villaapp.Modelo.Usuario;
 
 /**
@@ -37,9 +39,18 @@ public class Controlador {
     }
 
     // Llama a la API de Google que transforma una latitud/longitud en una direccion
-    public void ObtenerUbicacion(LatLng latLng){
+    public void obtenerUbicacion(LatLng latLng){
         ObtenerUbicacion prueba = new ObtenerUbicacion(contexto);
         prueba.execute(latLng);
+    }
+
+    public void obtenerRuta(ICambios cambios, LatLng latOrigen, LatLng latDestino){
+        ObtenerRuta ruta = new ObtenerRuta(cambios);
+
+        String origen = latOrigen.latitude+","+latOrigen.longitude;
+        String destino = latDestino.latitude+","+latDestino.longitude;
+
+        ruta.execute(origen, destino);
     }
 
 }
