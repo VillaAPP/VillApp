@@ -55,12 +55,14 @@ public class DAOUsuario {
         abrirBDLectura();
 
         Cursor cursor = bd.rawQuery("SELECT * FROM Usuario", null);
-        if(cursor.moveToFirst()){
-            usuario = new studio.waterwell.villaapp.Modelo.Usuario(cursor.getString(0), cursor.getString(1));
-        }
 
-        cursor.close();;
-        cerrarBD();;
+        if(cursor.moveToFirst())
+            usuario = new studio.waterwell.villaapp.Modelo.Usuario(cursor.getString(0), cursor.getString(1));
+
+
+        cursor.close();
+        cerrarBD();
+
         return usuario;
     }
 
@@ -72,5 +74,6 @@ public class DAOUsuario {
         bd.insert("Usuario",null, valores);
         cerrarBD();
     }
+
     //TODO: Insertar y borrar un usuario
 }

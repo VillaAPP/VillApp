@@ -32,16 +32,11 @@ public class Controlador {
         DAOUsuario DAOUsuario = new DAOUsuario(user);
         return DAOUsuario.cargarUsuario();
     }
+
     public void guardarUsuarioBDInterna(Usuario usuario){
         studio.waterwell.villaapp.BD.Usuario user = new studio.waterwell.villaapp.BD.Usuario(contexto, "Usuario", null, 1);
         DAOUsuario DAOUsuario = new DAOUsuario(user);
         DAOUsuario.guardarUsuario(usuario);
-    }
-
-    // Llama a la API de Google que transforma una latitud/longitud en una direccion
-    public void obtenerUbicacion(LatLng latLng){
-        ObtenerUbicacion prueba = new ObtenerUbicacion(contexto);
-        prueba.execute(latLng);
     }
 
     public void obtenerRuta(ICambios cambios, LatLng latOrigen, LatLng latDestino){

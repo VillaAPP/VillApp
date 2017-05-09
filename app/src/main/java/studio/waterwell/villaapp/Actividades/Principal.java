@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.HashMap;
@@ -47,9 +49,10 @@ public class Principal extends AppCompatActivity
     private boolean atras;
 
     /* Atributos necesarios del modelo */
-    
+
     private Controlador controlador;
     private Usuario usuario;
+    private LatLng ubicacion;
 
     // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
@@ -161,18 +164,14 @@ public class Principal extends AppCompatActivity
         }
     }
 
-    // Se llama en FragMapa para pasar del mapa a Principal las coordenadas de mi ubicacion actual
-    @Override
-    public void obtenerUbicacion(LatLng latLng) {
-        controlador.obtenerUbicacion(latLng);
-    }
-
-    // Manda las coordenadas desde el fragmento MisRonces a principal para trazar una ruta
+    // Manda las coordenadas desde el fragmento MisRincones a principal para trazar una ruta
     @Override
     public void mandarCoordenadas(LatLng latLng) {
         atras = false;
+        ubicacion = latLng;
         fragMapa.moverUbicacion(latLng);
-        controlador.obtenerRuta(this, latLng, fragMapa.obtenerMiUbicacion());
+        LatLng miUbicacion = fragMapa.obtenerMiUbicacion();
+        controlador.obtenerRuta(this, ubicacion, miUbicacion);
         cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
     }
 
@@ -181,4 +180,11 @@ public class Principal extends AppCompatActivity
     public void obtenerRuta(List<List<HashMap<String, String>>> ruta) {
         fragMapa.pasarRuta(ruta);
     }
+
+    @Override
+    public void modificarRuta(LatLng miPosicion) {
+        controlador.obtenerRuta(this, ubicacion, miPosicion);
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+    }
+
 }

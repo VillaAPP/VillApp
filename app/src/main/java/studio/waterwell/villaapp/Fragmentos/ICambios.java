@@ -11,12 +11,11 @@ import java.util.List;
 
 public interface ICambios {
 
-    // Se llama en FragMapa para pasar del mapa a Principal las coordenadas de mi ubicacion actual
-    public void obtenerUbicacion(LatLng latLng);
-
     // Manda las coordenadas desde el fragmento MisRonces a principal para trazar una ruta
-    public void mandarCoordenadas(LatLng latLng);
+    public void mandarCoordenadas(LatLng rincon);
 
     // Manda desde el AsynTack ObtenerRuta el conjunto de puntos que dibujan en el mapa la ruta desde mi ubicacion hasta el destino
     public void obtenerRuta(List<List<HashMap<String, String>>> ruta);
+
+    public void modificarRuta(LatLng miPosicion);
 }

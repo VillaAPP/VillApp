@@ -21,7 +21,6 @@ public class FragMapa extends Fragment {
     private Mapa mapa;
     private Button boton;
     private Button boton2;
-    private Button boton3;
     private LatLng aux;
     private ICambios cambios;
 
@@ -54,8 +53,8 @@ public class FragMapa extends Fragment {
                 .commit();
 
         boton = (Button) v.findViewById(R.id.btn_tmapa);
-        boton2 = (Button) v.findViewById(R.id.btn_pos);
-        boton3 = (Button) v.findViewById(R.id.btn_prueba);
+
+        boton2 = (Button) v.findViewById(R.id.btn_ruta);
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +66,7 @@ public class FragMapa extends Fragment {
         boton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapa.volverUbicacion();
-            }
-        });
-
-        boton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                aux = mapa.getMisCoordenadas();
-                cambios.obtenerUbicacion(aux);
+                mapa.borraRuta();
             }
         });
 

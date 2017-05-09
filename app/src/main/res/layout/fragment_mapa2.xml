@@ -25,27 +25,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cambiar mapa"
+            android:layout_marginStart="38dp"
             android:layout_above="@+id/frag_mapa"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="17dp" />
+            android:layout_alignParentStart="true" />
 
         <Button
-            android:id="@+id/btn_pos"
+            android:id="@+id/btn_ruta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reubicar"
-            android:layout_marginEnd="21dp"
+            android:layout_marginStart="42dp"
+            android:text="Borrar ruta"
             android:layout_above="@+id/frag_mapa"
-            android:layout_toStartOf="@+id/btn_prueba" />
-
-        <Button
-            android:id="@+id/btn_prueba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prueba"
-            android:layout_above="@+id/frag_mapa"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp" />
+            android:layout_toEndOf="@+id/btn_tmapa" />
 
     </RelativeLayout>
 </FrameLayout>
