@@ -193,7 +193,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         actualizarUbicacion(location);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, locListener);
     }
 
     // Cambia entre mapa satelite y normal

@@ -184,7 +184,6 @@ public class Principal extends AppCompatActivity
     @Override
     public void modificarRuta(LatLng miPosicion) {
         controlador.obtenerRuta(this, ubicacion, miPosicion);
-        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
     }
 
 }
