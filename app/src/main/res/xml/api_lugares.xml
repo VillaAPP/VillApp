@@ -1,0 +1,172 @@
+<lugares>
+    <lugar>
+        <id>01</id>
+        <nombre>PUERTA DE ALCALA</nombre>
+        <direccion>Plaza de la Independencia, 28001 Madrid, España</direccion>
+        <latitud>40.420318</latitud>
+        <longitud>-3.688914</longitud>
+        <img></img>
+        <descripcion>
+            La puerta daba acceso a aquellos viajeros que entraban antiguamente a la población desde Francia, Aragón o Cataluña. En la actualidad es una puerta monumental que se encuentra ubicada junto a la Fuente de Cibeles y el Parque del Retiro. Fue construida por mandato de Carlos III en sustitución de otra puerta anterior que existía ya desde el siglo XVI.
+            Las salidas de Madrid estaban flanqueadas por cinco puertas reales o de registro (es decir aquellas en las que se pagaban los impuestos): la de Segovia (denominada también del Puente de Segovia), Guadalajara, Toledo, Atocha, la de Alcalá y Bilbao (o de los Pozos de la Nieve), y catorce portillos de menor importancia o de segundo orden a (abiertos en distintas fechas): Vega, Vistillas, Gilimón, el Campillo del Mundo Nuevo, Embajadores, Valencia, Campanilla, Recoletos, Santa Bazbara, Maravillas, Santo Domingo (o Fuencarral ), Conde Duque, San Bernardino (o de San Joaquín) y San Vicente.
+            La puertas principales permanecían abiertas hasta las diez de la noche en la época inviernal, y en el estío una hora más debido a la mayor longitud del día. Tras este horario, y sólo en caso necesario, un retén permitía el paso. El oficio de vigilancia lo hacían portazgueros. Sin embargo los portillos se abrían a las primeras horas del día y se cerraban con la puesta del sol, permaneciendo bajo cierre toda la noche. Entre todas esas puertas principales, la de Alcalá, era una de las más importantes antes de la llegada de Carlos III. La dignificación de los accesos a la Villa era un claro objetivo en la mejora del urbanismo de la ciudad, y este objetivo incidía directamente contra este acceso y su conversión a monumento. La existencia desde finales del siglo XVI tenía entre sus muchas funciones la de ofrecer una cañada real (la Cañada Real Galiana), por la Puerta pasaban los rebaños de ovejas trashumantes. Todavía existen sendos mojones a ambos lados de la calle que indican su categoría de vía pecuaria.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>02</id>
+        <nombre>PARROQUIA DE SANTA BARBARA</nombre>
+        <direccion>Calle del Gral. Castaños, 2, 28004 Madrid, España</direccion>
+        <latitud>40.424543</latitud>
+        <longitud>-3.694003</longitud>
+        <img></img>
+        <descripcion>
+            Habiendo realizado la Reina Doña Bárbara de Braganza una visita al Seminario de Nobles, institución dedicada a la educación de los jóvenes que por su cuna debían ocupar los primeros puestos de la sociedad, le surgió la idea de hacer una fundación similar para las hijas de la nobleza y que además le sirviera de retiro en caso de quedar viuda, y así ponerse a salvo de los manejos e intrigas de su suegra Isabel de Farnesio.
+            Trasladado su deseo al Rey Don Fernando VI, éste le dio su aprobación, como no era menos de esperar, ya que estaba en plena sintonía con todos los deseos de su esposa.
+            Para edificar el conjunto de monasterio, colegio y palacio se eligió una amplia parcela perteneciente a las eras de Vicálvaro que existía entre el convento de Santa Bárbara y el prado de Recoletos, encargando la redacción y ejecución del proyecto al arquitecto Francisco Carlier y al aparejador Francisco Moradillo.
+            En Enero de 1750 se comenzó el desmonte e igualación del terreno y el 26 de Junio se colocó la primera piedra.
+            La dirección de la institución fue confiada a las religiosas de San Francisco de Sales, que aunque no eran conocidas en España tenían gran prestigio en otras naciones europeas. Así hicieron venir de Annecy (Francia) a las que debían ser fundadoras  del primer Monasterio de la Visitación en nuestro país.
+            El monasterio y la iglesia contigua, junto con la lonja, huerta, casa del hortelano, jardín y demás dependencias ocupaban un solar de  71.937 metros cuadrados (774.350 pies cuadrados).
+            En la construcción del edificio no se escatimaron gastos, utilizando los mármoles,  mosaicos y bronces más costosos y los cuadros pintados por los más famosos artistas de la época, todos estos dispendios fueron blanco de múltiples criticas y censuras del pueblo e incluso dio origen a coplillas y epigramas
+            Fuente: http://www.parroquiadesantabarbara.es
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>02</id>
+        <nombre>PARROQUIA DE SANTA BARBARA</nombre>
+        <direccion>Calle del Gral. Castaños, 2, 28004 Madrid, España</direccion>
+        <latitud>40.424543</latitud>
+        <longitud>-3.694003</longitud>
+        <img></img>
+        <descripcion>
+            Habiendo realizado la Reina Doña Bárbara de Braganza una visita al Seminario de Nobles, institución dedicada a la educación de los jóvenes que por su cuna debían ocupar los primeros puestos de la sociedad, le surgió la idea de hacer una fundación similar para las hijas de la nobleza y que además le sirviera de retiro en caso de quedar viuda, y así ponerse a salvo de los manejos e intrigas de su suegra Isabel de Farnesio.
+            Trasladado su deseo al Rey Don Fernando VI, éste le dio su aprobación, como no era menos de esperar, ya que estaba en plena sintonía con todos los deseos de su esposa.
+            Para edificar el conjunto de monasterio, colegio y palacio se eligió una amplia parcela perteneciente a las eras de Vicálvaro que existía entre el convento de Santa Bárbara y el prado de Recoletos, encargando la redacción y ejecución del proyecto al arquitecto Francisco Carlier y al aparejador Francisco Moradillo.
+            En Enero de 1750 se comenzó el desmonte e igualación del terreno y el 26 de Junio se colocó la primera piedra.
+            La dirección de la institución fue confiada a las religiosas de San Francisco de Sales, que aunque no eran conocidas en España tenían gran prestigio en otras naciones europeas. Así hicieron venir de Annecy (Francia) a las que debían ser fundadoras  del primer Monasterio de la Visitación en nuestro país.
+            El monasterio y la iglesia contigua, junto con la lonja, huerta, casa del hortelano, jardín y demás dependencias ocupaban un solar de  71.937 metros cuadrados (774.350 pies cuadrados).
+            En la construcción del edificio no se escatimaron gastos, utilizando los mármoles,  mosaicos y bronces más costosos y los cuadros pintados por los más famosos artistas de la época, todos estos dispendios fueron blanco de múltiples criticas y censuras del pueblo e incluso dio origen a coplillas y epigramas
+            Fuente: http://www.parroquiadesantabarbara.es
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>03</id>
+        <nombre>PLAZUELA DE SAN LUIS</nombre>
+        <direccion>Calle de la Montera, 48, 28013 Madrid, España</direccion>
+        <latitud>40.419813</latitud>
+        <longitud>-3.701312</longitud>
+        <img></img>
+        <descripcion>
+            Durante siglos hubo en dicha plaza un mercado de comestibles. La actividad de este mercado se inició en el siglo XVII y continuó hasta finales del XVIII cuando empezaron a venderse otros artículos además del pan, llegando al siglo XIX como un mercado de frutas y hortalizas.
+            Posteriormente se reconvertiría a la denominada “Red de San Luis”, que estaba formada por la confluencia de las calles Montera, Jacometrezo, Fuencarral, Hortaleza, Caballero de Gracia y Jardines.
+            Antes de la construcción de la Gran Vía, la Red de San Luis era de menores dimensiones, pues las calles Fuencarral y Hortaleza llegaban más al sur, hasta la esquina con las calles Caballero de Gracia y Jacometrezo que en aquella época llegaba hasta Montera enfrente de Caballero de Gracia.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>04</id>
+        <nombre>PUENTE DE SEGOVIA</nombre>
+        <direccion>Puente de Segovia, Puerta del Angel, 28005 Madrid, España</direccion>
+        <latitud>40.413966</latitud>
+        <longitud>-3.722793</longitud>
+        <img></img>
+        <descripcion>
+            El Puente de Segovia es un monumento renacentista de la ciudad de Madrid (España), obra del arquitecto Juan de Herrera. Se sitúa en el cruce de la calle de Segovia con el río Manzanares, punto que históricamente ha constituido uno de los principales accesos a la villa.
+            Conocido antiguamente como Puente Segoviana, las primeras referencias de esta construcción datan del siglo XIV, cuando el rey Alfonso XI de Castilla autorizó su edificación mediante dos cartas escritas en 1345 y en 1346.
+            El de Segovia es el puente más antiguo (sobreviviente) de la ciudad. Su construcción fue ordenada por Felipe II a su arquitecto preferido, Juan de Herrera, autor del Monasterio de El Escorial y del Palacio Real de Aranjuez, entre otros edificios. Las obras, que contaron con un presupuesto de 200.000 ducados, se extendieron entre 1582 y 1584.
+            Seis decenios después de su apertura, en el año 1648, el arquitecto José de Villarreal procedió a la reparación del tablero superior. En 1648, fue colocado en su frente una puerta ornamental, obra de Teodoro Ardemans, para dar mayor monumentalidad al puente. Este elemento fue eliminado con el paso del tiempo.
+            En noviembre de 1936, durante la Guerra Civil española, fue volado por el bando republicano para evitar la entrada en Madrid de las tropas franquistas, al mando del general Yagüe. Tras la contienda, fue reconstruido introduciendo algunas variaciones con respecto al diseño original. Se procedió a su ensanche y fueron construidos cuatro patines (dos a cada lado) y un embarcadero, ubicado a sus pies, en el contexto de las obras de canalización del río Manzanares.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>05</id>
+        <nombre>PALACIO REAL</nombre>
+        <direccion>Calle de Bailén, s/n, 28071 Madrid, España</direccion>
+        <latitud>40.417955</latitud>
+        <longitud>-3.714312</longitud>
+        <img></img>
+        <descripcion>
+            Es conocido también como Palacio de Oriente, a pesar de estar situado en la parte más occidental de Madrid, debido a su ubicación en la Plaza de Oriente, llamada así al estar situada al este del palacio. A eje con el palacio, y enfrentado, se encuentra al otro extremo de la plaza el Teatro Real.
+            El palacio fue construido por orden del rey Felipe V, sobre el solar dejado por el Real Alcázar, destruido casi del todo por un incendio en 1734. Tanto los cimentos del antiguo alcázar como alguna de sus estructuras fueron utilizadas para la construcción del nuevo palacio. El episodio del incendio sirvió para justificar la sustitución del viejo edificio por un palacio acorde al gusto de la época. Su construcción comenzó en 1738, según trazas del arquitecto Filippo Juvara, quien proponía un palacio mayor pero en una ubicación diferente. Al morir Juvara, se encomendó el proyecto a su discípulo Juan Bautista Sachetti, a quien se exigió adaptar los planos de Juvara al solar del antiguo Alcázar. Otros distinguidos arquitectos españoles como Ventura Rodríguez participaron y se formaron en la cantera del nuevo palacio, a él se debe la configuración de la Real Capilla. Francesco Sabatini se encargó de la conclusión del edificio, así como de obras secundarias de reforma, ampliación y decoración.
+            El antecedente directo del Palacio de Oriente fue el Real Alcázar, fortaleza levantada en el mismo solar donde hoy se alza la construcción barroca. Su estructura fue objeto de varias reformas —sobre todo la fachada—, pues el rey Enrique III de Castilla lo convirtió en una de sus más frecuentadas residencias, tras lo que el recinto obtiene el adjetivo de «real». Su hijo Juan II edificó la Capilla Real y varias dependencias. Sin embargo, durante la Guerra de Sucesión Castellana (1476) las tropas de Juana la Beltraneja fueron sitiadas en el alcázar, lo que ocasionó algunos destrozos en el viejo castillo.
+            El emperador Carlos I comenzó con reformas en el alcázar, empleando ya una arquitectura renacentista, pero fue realmente Felipe II quien impulsó mayores obras contratando a artistas de Italia, Francia y los Países Bajos. Fue por entonces cuando se construyó la llamada Torre Dorada y la Real Armería, derribada en 1894. Felipe III, Felipe IV y Carlos II continuaron con este proyecto.
+            Cuando llegó al trono Felipe V de Borbón en 1700 consideró que el antiguo alcázar era demasiado austero y estaba anticuado por lo que acometió nuevas reformas. La reina María Luisa Gabriela de Saboya por su parte y la Princesa de los Ursinos redecoraron las estancias al gusto francés. El incendio parcial del Alcázar en la Nochebuena de 1734 fue una buena excusa para demolerlo casi por completo (exceptuando parte de los cimientos y algunas estructuras) y construir un nuevo palacio más acorde al gusto de la época y la nueva dinastía.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>06</id>
+        <nombre>JARDINES DEL CAMPO DEL MORO</nombre>
+        <direccion>Jardines del Campo del Moro, Paseo de la Virgen del Puerto, s/n, 28058 Madrid, España</direccion>
+        <latitud>40.418698</latitud>
+        <longitud>-3.717975</longitud>
+        <img></img>
+        <descripcion>
+            Los terrenos situados entre el Palacio Real de Madrid y el valle del río Manzanares sólo fueron conocidos con el nombre del Campo del Moro a partir del siglo XIX. Éste proviene de los promotores de los jardines, quienes, buscando una denominación, recurrieron a episodios históricos.
+            El hecho que tomaron como referencia fue el ataque contra la ciudad protagonizado por el caudillo musulmán Alí Ben Yusuf, que a la muerte de Alfonso VI, en 1109, intentó reconquistar la plaza de Madrid, en manos de los cristianos, atacando el Alcazar desde la ladera cercana al río. Supuestamente, había acampado junto con sus tropas en el sitio donde actualmente se emplaza el conjunto ajardinado.
+            La idea de levantar una zona recreativa en el paraje que hoy ocupa el Campo del Moro es anterior a la edificación del Palacio Real de Madrid. Los primeros intentos surgieron en tiempos de Felipe II (1527-1598), quien encargó un proyecto para salvar el desnivel existente entre el Real Alcázar, en cuyo solar fue erigido el palacio actual, y la hondonada del río Manzanares. Sin embargo, tal iniciativa no pudo llevarse a efecto.
+            Posteriormente, Felipe IV (1605-1665), que utilizaba el lugar con fines de caza, ordenó inicialmente la plantación de diferentes especies arbóreas, mayoritariamente olmos. Debido al uso de los mismos, en esta época se denominaba Parque y Monte de los Venados (ver plano Villa Madrid Antiguo).
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>07</id>
+        <nombre>ERMITA DE SAN ISIDRO</nombre>
+        <direccion>Paseo del Quince de Mayo, 62, 28019 Madrid, España</direccion>
+        <latitud>40.398399</latitud>
+        <longitud>-3.719836</longitud>
+        <img></img>
+        <descripcion>
+            Situada al borde del río Manzanares, en la margen derecha, al otro lado de las ermitas de la Virgen del Puerto y de San Antonio de la Florida, es la única de sus contemporáneas que mantiene una continuidad con el edificio original al tiempo que testimonia la significación isidriana del lugar, en la tradición tipológica de la fusión autóctona entre el barroco culto y el castizo.
+            El lugar donde se ubica la ermita fueron unas tierras pertenecientes a Iván de Vargas en Carabanchel. Vargas era el patrón que contrató a San Isidro como pocero y labrador. El manantial existía ya desde el siglo XII, en vida de San Isidro. La casa de los Vargas se encontraba en las cercanías.
+            El manantial (o quizás pozo) data del siglo XII, por lo tanto en tiempos de San Isidro, del que ya tienen noticias de sus aguas milagrosas. La tradición popular atribuye uno de los milagros de San Isidro a este pozo, creado para calmar la sed de su amo: Iván de Vargas durante una calurosa tarde de verano. El manantial fue creado espontáneamente al clavar su aguijada en el suelo.
+            La romería asociada al santo, anterior a la construcción de la ermita, ya consistía en ir a beber el agua milagrosa que brotaba de la fuente. Tras este viaje romero de comienzo de la primavera, los madrileños se explayaban a lo largo de la pradera cercana
+            La primera ermita de San Isidro data del año 1528, y se construyó por iniciativa de Isabel de Portugal, esposa del emperador Carlos I. El motivo fue el agradecimiento al santo por haber curado las aguas de un manantial a su hijo, el príncipe Felipe, unas peligrosas fiebres (cuartanas) que contrajo.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>08</id>
+        <nombre>PLAZA DEL HUMILLADERO</nombre>
+        <direccion>Plaza del Humilladero, 28005 Madrid, España</direccion>
+        <latitud>40.411785</latitud>
+        <longitud>-3.710679</longitud>
+        <img></img>
+        <descripcion>
+            Plaza y calle reciben su nombre por la llamada cruz del humilladero de San Francisco, que Mesonero Romanos enuncia como Humilladero de Nuestra Señora de Gracia.
+            Relata Pedro de Répide, ampliando la información de Mesonero en El antiguo Madrid, que en la esquina de la Plazuela de la Cebada a Puerta de Moros (espacio que luego sería llamado plaza del Humilladero) estuvo el templo de la Vera Cruz y Santa María de Gracia, levantado por la cofradía de la Vera Cruz, fundada en el siglo XIII en el vecino convento de San Francisco y a partir de una ermita anterior. El relato semilegendario atribuye al caballero Francisco Ramírez la decisión, en 1540, de colocar una imagen de Santa María de Gracia en el templo que pertenecía a la congregación de la Vera Cruz, quedando ambas fundidas a partir de 1575. Casi un siglo después, con el derribo de esta iglesia, la imagen de la virgen fue trasladada al hospital y colegio de San Patricio de los Irlandeses, fundado en 1629 y situado al final de la calle del Humilladero, acabando seis años después en el edificio que la institución religiosa tomó en la misma calle pero con entrada por la de Toledo, inmueble cedido por el presbítero irlandés Demetio O'Brien.
+            Habla también Répide de que por ser la plazuela del Humilladero uno de los pocos espacios abiertos en el primitivo trazado de callejuelas de la Morería, solía emplazarse en élla el conjunto ferial de columpios, tiovivos y barracas de la verbena de la Paloma.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>09</id>
+        <nombre>PLAZA DE LA CEBADA</nombre>
+        <direccion>Plaza de la Cebada, 28005 Madrid, España</direccion>
+        <latitud>40.411363</latitud>
+        <longitud>-3.709508</longitud>
+        <img></img>
+        <descripcion>
+            La etimología del nombre de la plaza se debe a la calle cercana homónima en la que se separaba la cebada cribando la destinada al forraje de los caballos del rey y de la que se aprovisionaba a los regimientos de caballería. El grano lo traían a vender a la plaza los labradores de las cercanías de la provincia de Madrid. Una de las primeras instituciones es el Hospital de la Latina que se construyó en terrenos que trocó Beatriz Galindo con otros que poseía Isabel la Católica en la Puerta de Moros.1 La plaza según Hilario Peñasco de la Puente y Carlos Cambronero debe su nombre, al igual que la homónima calle de la Cebada, a que se cree que era el lugar donde acudían los labriegos de las cercanías de Madrid a vender la cebada. La plaza se formó como tal a partir del siglo XVI y era empleada como un mercado de verduras, cereales y productos de cerdo. El espacio se ofrece a la encomienda de Moratalaz, de la Orden de Calatrava, según se ve por escritura otorgada en 1536 por Rodrigo de Coalla. La plaza aparece en el Plano de Teixeira de 1656 y ocupa un espacio tan grande como la Plaza Mayor.
+            Hubo en el amplio espacio de esta plaza dos fuentes ornamentales importantes, ambas construidas en el siglo XVII, la llamada fuente de la Abundancia (1624) según diseño de Juan Gómez de Mora, , demolida el 27 de marzo de 1840,5 y la fuente de Endimión o fuente de la Puerta de Moros, en la parte más oriental de la plaza de la Cebada, y construida entre 1620 y 1638.
+            Originalmente estaba situada entre la calle de Toledo y la desaparecida Puerta de Moros. Habría tenido el nombre de plaza de la Cebada al menos desde finales del siglo XVI. En 1610 hubo pleito entre Madrid y el Hospital de la Latina en relación a la pertenencia de una parcela de terreno en la plaza de la Cebada, que quedaría cerrado por transacción. Los antecedentes de construcciones particulares en la plaza habrían comenzado en 1653.
+            El 19 de junio de 1622 se la acondicionó como un jardín público con motivo de las celebraciones de San Isidro. En la plaza se celebraron durante el siglo XVIII las denominadas Ferias de Madrid. El 7 de noviembre de 1823, tras el fin del Trienio Liberal, Rafael del Riego fue sentenciado a muerte y ejecutado en la plaza entre los insultos de parte de la población madrileña, cuando años antes le habían aclamado, por iniciar el movimiento militar y popular que puso final al gobierno absoluto del rey Fernando VII.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>10</id>
+        <nombre>EL RASTRO</nombre>
+        <direccion>Calle de la Ribera de Curtidores, 19, 28005 Madrid, España</direccion>
+        <latitud>40.410278</latitud>
+        <longitud>-3.707293</longitud>
+        <img></img>
+        <descripcion>
+            Su creación es contemporánea de la de los Cinco Gremios Mayores en Madrid, y fue creciendo a lo largo de los siglos, hasta los 3500 puestos -máximo permitido por las últimas leyes municipales- que tenía en el umbral del siglo XXI.
+            Cuando Felipe II estableció su Corte en Madrid, en el año 1561, la villa no alcanzaba los cien mil habitantes. Desde finales de aquel siglo XVI, las principales calles y plazas de Madrid se vieron invadidas por baratillos (mercados públicos) donde los ropavejeros vendían ropa usada, siendo la Plaza Mayor y la Puerta del Sol los lugares favoritos. La proliferación era tal, que en 29 de marzo de 1599 se prohibió la realización de juntas y baratillos, así como la de vender cosa suya ni ajena, nueva ni vieja, grande ni pequeña, de día y de noche, en ninguna plaza ni calle de toda esta Corte. La prohibición desplazó estos mercados fuera del área metropolitana. La persecución de las autoridades a los baratillos, buhoneros y mujeres encargadas de venta ambulante ("barateras"), se extendió hasta bien entrado el siglo XVIII. En 1624 y 1626 está documentada la prisión a los barateros de la Puerta del Sol, ordenada desde la Sala de Alcaldes de la Villa. Sin embargo, en la Plaza de Herradores se permitía la existencia de almonedas especializadas en la venta de cosas viejas.
+            Las mencionadas prohibiciones y otros bandos municipales (Ordenanzas de Policía de la Villa) fueron debilitándose con el paso del tiempo. El Rastro madrileño está documentado desde 1740 como un lugar de encuentro para la venta, cambio y trapicheo de ropas de segunda mano, alternativo al negocio de la venta ambulante. Se formaba alrededor del antiguo matadero, origen de su insospechado nombre. «Rastro» era en el siglo XVI sinónimo de carnicería o desolladero.
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
+</lugares>
