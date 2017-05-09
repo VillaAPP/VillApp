@@ -1,7 +1,6 @@
 package studio.waterwell.villaapp.Fragmentos;
 
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -10,11 +9,13 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,25 +39,26 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     private static final String ARG_PARAM1 = "param1";
     private final static int EJEMPLO = 1;
 
+    private ICambios cambios;
     private GoogleMap gMap;
     private Marker[] marcas;
     private Location location;
     private LocationManager locationManager;
-
-    private boolean centrar;
+    private double lat;
+    private double lng;
 
     /* Latitud y longitud de mi posicion actual */
 
-    private Marker miMarca;
+    // private Marker miMarca;
     private LatLng misCoordenadas;
-    private double lat = 0.0;
-    private double lng = 0.0;
 
     /* Ruta que une dos puntos del mapa */
 
     private List<List<HashMap<String, String>>> ruta;
     private PolylineOptions lineOptions;
     private Polyline polyFinal;
+    private boolean enRuta;
+
 
     public Mapa() {
         // Required empty public constructor
@@ -83,10 +85,12 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-           //
+            //
         }
         lineOptions = null;
-        centrar = true;
+        enRuta = false;
+        lat = 0.0;
+        lng = 0.0;
     }
 
     @Override
@@ -125,36 +129,31 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         gMap.setMinZoomPreference(14);
         gMap.getUiSettings().setMapToolbarEnabled(false);
 
-        miUbicacion();
-    }
 
-    // Coloca el icono en el mapa donde esta el usuario
-    private void agregarMiMarcador(double lat, double lng) {
-        misCoordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16);
-
-        if (miMarca != null)
-            miMarca.remove();
-
-        miMarca = gMap.addMarker(new MarkerOptions()
-                .position(misCoordenadas)
-                .title("Ubicación actual")
-        );
-
-        // Una vez centrada la camara en nuestra ubicación se desactiva la opcion hasta que el desea volver a centrar
-        if(centrar){
-            gMap.animateCamera(miUbicacion);
-            centrar = false;
+        // Si no hay permisos de gps los pido
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
+        gMap.getUiSettings().setMyLocationButtonEnabled(true);
+        gMap.setMyLocationEnabled(true);
+
+        miUbicacion();
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
     }
 
     // Actualiza longitud y latitud de la ubicacion del usuario
     private void actualizarUbicacion(Location location) {
+
         if (location != null) {
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            agregarMiMarcador(lat, lng);
+            if(lat != location.getLatitude() && lng != location.getLongitude()){
+                misCoordenadas = new LatLng(location.getLatitude(), location.getLongitude());
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+                if(enRuta)
+                    cambios.modificarRuta(misCoordenadas);
+            }
+
         }
     }
 
@@ -184,8 +183,8 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     // Obtiene las coordenadas via GPS y actualiza la posicion cada 8 segundos
     private void miUbicacion() {
 
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        // Si no hay permisos de gps los pido
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
@@ -205,11 +204,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         else
             gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-    }
-
-    // Centra la camara en el usuario
-    public void volverUbicacion(){
-        centrar = true;
     }
 
    // Devuelve las coordenadas del usuario
@@ -235,6 +229,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         if(lineOptions != null)
             borraRuta();
 
+        enRuta = true;
 
         // Recorro toda la ruta otbtenida
         for(int i=0;i<ruta.size();i++){
@@ -271,5 +266,12 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void borraRuta(){
         polyFinal.remove();
         lineOptions = null;
+        enRuta = false;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cambios = (ICambios) getActivity();
     }
 }
