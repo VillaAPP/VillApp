@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,11 +26,16 @@ import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
 import studio.waterwell.villaapp.Fragmentos.FragRincones;
 import studio.waterwell.villaapp.Fragmentos.ICambios;
+import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ICambios {
+
+    /* Array de lugares */
+
+    private ArrayList<Lugar> lugares;
 
     /* Componentes de la vista */
 
@@ -58,6 +64,7 @@ public class Principal extends AppCompatActivity
     private void cargarDatos() {
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         usuario = bundle.getParcelable("Usuario");
+        lugares = bundle.getParcelableArrayList("lugares");
     }
 
 
@@ -92,7 +99,7 @@ public class Principal extends AppCompatActivity
 
         // Inicio los fragmentos
         fragmentManager = getSupportFragmentManager();
-        fragMapa = FragMapa.newInstance();
+        fragMapa = FragMapa.newInstance(this.lugares);
         fragRincones = FragRincones.newInstance();
         fragMisRincones= FragMisRincones.newInstance();
 

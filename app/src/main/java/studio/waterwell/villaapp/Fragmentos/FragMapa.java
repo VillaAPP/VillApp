@@ -11,9 +11,11 @@ import android.widget.Button;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.R;
 
 public class FragMapa extends Fragment {
@@ -27,6 +29,15 @@ public class FragMapa extends Fragment {
 
     public FragMapa() {
         // Required empty public constructor
+    }
+
+    public static FragMapa newInstance(ArrayList<Lugar> lugares) {
+        FragMapa fragment = new FragMapa();
+        Bundle args = new Bundle();
+
+        args.putParcelableArrayList("lugares", lugares);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     public static FragMapa newInstance() {
@@ -47,7 +58,9 @@ public class FragMapa extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mapa2, container, false);
 
-        mapa = Mapa.newInstance();
+        ArrayList<Lugar>  lugares = new ArrayList<Lugar>();
+        lugares = getArguments().getParcelableArrayList("lugares");
+        mapa = Mapa.newInstance(lugares);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_mapa, mapa)
                 .commit();

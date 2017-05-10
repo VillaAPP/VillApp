@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import studio.waterwell.villaapp.Modelo.Lugar;
+
 
 public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     // TODO: Rename parameter arguments, choose names that match
@@ -39,9 +41,13 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     private static final String ARG_PARAM1 = "param1";
     private final static int EJEMPLO = 1;
 
+    /*
+    array de lugares
+     */
+    private ArrayList<Lugar> lugares;
+
     private ICambios cambios;
     private GoogleMap gMap;
-    private Marker[] marcas;
     private Location location;
     private LocationManager locationManager;
     private double lat;
@@ -64,28 +70,26 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static Mapa newInstance(String param1, String param2) {
+    public static Mapa newInstance(ArrayList<Lugar> lugares) {
         Mapa fragment = new Mapa();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putParcelableArrayList("lugares", lugares);
         fragment.setArguments(args);
-
         return fragment;
     }
 
     // Prueba
-    public static Mapa newInstance() {
+    /*public static Mapa newInstance() {
         Mapa fragment = new Mapa();
 
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //
+            lugares = getArguments().getParcelableArrayList("lugares");
         }
         lineOptions = null;
         enRuta = false;
@@ -107,26 +111,17 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
 
-        LatLng aux = new LatLng(40.39991817, -3.6941729);
-        LatLng aux2 = new LatLng(40.4166635, -3.7041687);
-        LatLng aux3 = new LatLng(40.4072103, -3.6945893);
+        for(int i = 0; i < lugares.size(); i++) {
 
-        gMap.addMarker(new MarkerOptions()
-                .position(aux)
-                .title("Calle Delicias")
-        );
-        gMap.addMarker(new MarkerOptions()
-                .position(aux2)
-                .title("Plaza del Sol")
-        );
-        gMap.addMarker(new MarkerOptions()
-                .position(aux3)
-                .title("Plaza de Atocha")
-        );
+            gMap.addMarker(new MarkerOptions()
+                    .position(lugares.get(i).obtenerCoordenadas())
+                    .title(lugares.get(i).getNombre().toString())
+            );
+        }
 
         // Asigno que se pueda hacer zoom
         gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        gMap.setMinZoomPreference(14);
+        gMap.setMinZoomPreference(10);
         gMap.getUiSettings().setMapToolbarEnabled(false);
 
 
@@ -139,7 +134,10 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         gMap.setMyLocationEnabled(true);
 
         miUbicacion();
-        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
+
+        //Da error!!!!!!!!!!!!
+
+        //gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
     }
 
     // Actualiza longitud y latitud de la ubicacion del usuario
