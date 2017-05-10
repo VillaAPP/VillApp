@@ -23,7 +23,6 @@ public class FragMapa extends Fragment {
     private Mapa mapa;
     private Button boton;
     private Button boton2;
-    private LatLng aux;
     private ICambios cambios;
 
 
@@ -40,11 +39,6 @@ public class FragMapa extends Fragment {
         return fragment;
     }
 
-    public static FragMapa newInstance() {
-        FragMapa fragment = new FragMapa();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +52,7 @@ public class FragMapa extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mapa2, container, false);
 
-        ArrayList<Lugar>  lugares = new ArrayList<Lugar>();
-        lugares = getArguments().getParcelableArrayList("lugares");
+        ArrayList<Lugar>  lugares = getArguments().getParcelableArrayList("lugares");
         mapa = Mapa.newInstance(lugares);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_mapa, mapa)

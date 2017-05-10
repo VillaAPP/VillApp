@@ -36,16 +36,11 @@ import studio.waterwell.villaapp.Modelo.Lugar;
 
 
 public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private final static int EJEMPLO = 1;
 
-    /*
-    array de lugares
-     */
+    /* array de lugares */
+
     private ArrayList<Lugar> lugares;
-
+    private Marker[] markers;
     private ICambios cambios;
     private GoogleMap gMap;
     private Location location;
@@ -53,9 +48,8 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     private double lat;
     private double lng;
 
-    /* Latitud y longitud de mi posicion actual */
+    /* posicion actual */
 
-    // private Marker miMarca;
     private LatLng misCoordenadas;
 
     /* Ruta que une dos puntos del mapa */
@@ -78,18 +72,12 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         return fragment;
     }
 
-    // Prueba
-    /*public static Mapa newInstance() {
-        Mapa fragment = new Mapa();
-
-        return fragment;
-    }*/
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             lugares = getArguments().getParcelableArrayList("lugares");
+            markers = new Marker[lugares.size()];
         }
         lineOptions = null;
         enRuta = false;
@@ -113,10 +101,13 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         for(int i = 0; i < lugares.size(); i++) {
 
-            gMap.addMarker(new MarkerOptions()
+            Marker marker = gMap.addMarker(new MarkerOptions()
                     .position(lugares.get(i).obtenerCoordenadas())
                     .title(lugares.get(i).getNombre().toString())
             );
+
+            // Vinculo el objeto de tipo lugar al marker
+            markers[i] = marker;
         }
 
         // Asigno que se pueda hacer zoom
@@ -137,7 +128,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         //Da error!!!!!!!!!!!!
 
-        //gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
     }
 
     // Actualiza longitud y latitud de la ubicacion del usuario
@@ -152,6 +143,11 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
                     cambios.modificarRuta(misCoordenadas);
             }
 
+        }
+        else{
+            misCoordenadas = new LatLng(location.getLatitude(), location.getLongitude());
+            lat = location.getLatitude();
+            lng = location.getLongitude();
         }
     }
 
