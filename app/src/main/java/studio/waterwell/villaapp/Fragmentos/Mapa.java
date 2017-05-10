@@ -77,10 +77,9 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         if (getArguments() != null) {
             lugares = getArguments().getParcelableArrayList("lugares");
         }
+        location = null;
         lineOptions = null;
         enRuta = false;
-        lat = 0.0;
-        lng = 0.0;
     }
 
     @Override
@@ -109,7 +108,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         gMap.setMinZoomPreference(10);
         gMap.getUiSettings().setMapToolbarEnabled(false);
-
 
         // Si no hay permisos de gps los pido
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

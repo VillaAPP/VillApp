@@ -24,25 +24,21 @@ public class MainActivity extends AppCompatActivity {
         controlador = new Controlador(getApplicationContext());
     }
 
-    // TODO: Falta por guardar en el bundle el ArrayList de todas las ubicaciones de la app
+
     @Override
     protected void onResume(){
         super.onResume();
 
-        // Todo esto es una prueba para simular una carga de trabajo que tarda 3 segundos
+
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 /*
-
                  */
-
                 controladorLugar = new ControladorLugar(getApplicationContext());
-
                 /*
-
                  */
                 Intent i = new Intent();
                 Bundle bundle = new Bundle();

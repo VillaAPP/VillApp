@@ -37,7 +37,6 @@ public class Credenciales extends AppCompatActivity {
 
     }
 
-    // TODO: Coger del bundle mandado por MainActivity el ArrayList de ubicaciones de toda la app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +67,6 @@ public class Credenciales extends AppCompatActivity {
             t.show();
         }
 
-        // TODO: Guardar el ArrayList de ubicaciones de toda la app en el bundle
         @android.webkit.JavascriptInterface
         public void datosUsuario(String estado, String user, String pass){
             Usuario usuario = new Usuario(user, pass);

@@ -60,7 +60,6 @@ public class Principal extends AppCompatActivity
     private Usuario usuario;
     private LatLng ubicacion;
 
-    // TODO: Coger del bundle mandado por CargaDatosLogin el ArrayList de ubicaciones de toda la app
     private void cargarDatos() {
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         usuario = bundle.getParcelable("Usuario");

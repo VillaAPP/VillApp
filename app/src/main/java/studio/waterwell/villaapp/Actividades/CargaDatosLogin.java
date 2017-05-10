@@ -39,7 +39,6 @@ public class CargaDatosLogin extends AppCompatActivity {
     }
 
 
-    // TODO: Falta por guardar en el bundle el ArrayList de todas las ubicaciones de la app
     @Override
     protected void onResume(){
         super.onResume();
