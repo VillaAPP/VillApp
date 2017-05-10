@@ -40,7 +40,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     /* array de lugares */
 
     private ArrayList<Lugar> lugares;
-    private Marker[] markers;
     private ICambios cambios;
     private GoogleMap gMap;
     private Location location;
@@ -77,7 +76,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             lugares = getArguments().getParcelableArrayList("lugares");
-            markers = new Marker[lugares.size()];
         }
         lineOptions = null;
         enRuta = false;
@@ -94,7 +92,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         return v;
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
@@ -105,9 +102,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
                     .position(lugares.get(i).obtenerCoordenadas())
                     .title(lugares.get(i).getNombre().toString())
             );
-
-            // Vinculo el objeto de tipo lugar al marker
-            markers[i] = marker;
+            marker.setTag(lugares.get(i));
         }
 
         // Asigno que se pueda hacer zoom
@@ -126,9 +121,16 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
 
         miUbicacion();
 
-        //Da error!!!!!!!!!!!!
-
         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
+
+        //TODO: Fijar el evento de que cuando clico en un marcador aparece la info del lugar
+        gMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                marker.showInfoWindow();
+                return true;
+            }
+        });
     }
 
     // Actualiza longitud y latitud de la ubicacion del usuario
@@ -144,10 +146,13 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
             }
 
         }
+
+        // Si no hay una localizacion previa carga la puerta del Sol
+        // TODO: Ver si esto funciona
         else{
-            misCoordenadas = new LatLng(location.getLatitude(), location.getLongitude());
-            lat = location.getLatitude();
-            lng = location.getLongitude();
+            lat = 40.4166635;
+            lng = -3.7041686999999683;
+            misCoordenadas = new LatLng(lat, lng);
         }
     }
 

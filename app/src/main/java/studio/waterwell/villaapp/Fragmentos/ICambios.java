@@ -11,8 +11,11 @@ import java.util.List;
 
 public interface ICambios {
 
-    // Manda las coordenadas desde el fragmento MisRonces a principal para trazar una ruta
+    // Manda las coordenadas desde el Mapa a principal al haber solicitado trazar una ruta
     public void mandarCoordenadas(LatLng rincon);
+
+    // Manda las coordenadas desde FragRincon a principal para que este se lo mande a Mapa y actualice la camara
+    public void cambiarCamara(LatLng rincon);
 
     // Manda desde el AsynTack ObtenerRuta el conjunto de puntos que dibujan en el mapa la ruta desde mi ubicacion hasta el destino
     public void obtenerRuta(List<List<HashMap<String, String>>> ruta);

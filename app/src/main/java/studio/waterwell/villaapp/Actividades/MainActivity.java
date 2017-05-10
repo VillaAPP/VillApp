@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     Usuario usuario = controlador.cargarUsuario();
                     bundle.putParcelable("Usuario", usuario);
                     i.setAction("android.intent.action.principal");
-                    i.putExtra("Bundle", bundle);
                 }
 
+                i.putExtra("Bundle", bundle);
                 startActivity(i);
 
                 finish();

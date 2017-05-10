@@ -100,7 +100,7 @@ public class Principal extends AppCompatActivity
         // Inicio los fragmentos
         fragmentManager = getSupportFragmentManager();
         fragMapa = FragMapa.newInstance(this.lugares);
-        fragRincones = FragRincones.newInstance();
+        fragRincones = FragRincones.newInstance(this.lugares);
         fragMisRincones= FragMisRincones.newInstance();
 
         // Los coloco en el controlador de fragmentos y oculto todos menos el del mapa
@@ -179,6 +179,12 @@ public class Principal extends AppCompatActivity
         fragMapa.moverUbicacion(latLng);
         LatLng miUbicacion = fragMapa.obtenerMiUbicacion();
         controlador.obtenerRuta(this, ubicacion, miUbicacion);
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+    }
+
+    @Override
+    public void cambiarCamara(LatLng rincon) {
+        fragMapa.moverUbicacion(rincon);
         cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
     }
 

@@ -11,12 +11,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 public class Credenciales extends AppCompatActivity {
     private WebView browser;
-
+    private ArrayList<Lugar> lugares;
     private void iniciarParteWeb(){
         RespuestaWeb respuestaWeb = new RespuestaWeb(getApplicationContext());
 
@@ -39,6 +42,9 @@ public class Credenciales extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credenciales);
+
+        Bundle bundle = getIntent().getBundleExtra("Bundle");
+        lugares = bundle.getParcelableArrayList("lugares");
 
         // Si no hay permisos de gps los pido
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -79,6 +85,7 @@ public class Credenciales extends AppCompatActivity {
             else
                 bundle.putBoolean("Registro", true);
 
+            bundle.putParcelableArrayList("lugares", lugares);
             bundle.putParcelable("Usuario", usuario);
             i.putExtra("Bundle", bundle);
 
