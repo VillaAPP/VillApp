@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import studio.waterwell.villaapp.Fragmentos.ICambios;
+import studio.waterwell.villaapp.Modelo.ICambios;
 
 /**
  * Created by Efecto Dopler on 08/05/2017.

@@ -1,4 +1,4 @@
-package studio.waterwell.villaapp.Fragmentos;
+package studio.waterwell.villaapp.Modelo;
 
 import com.google.android.gms.maps.model.LatLng;
 

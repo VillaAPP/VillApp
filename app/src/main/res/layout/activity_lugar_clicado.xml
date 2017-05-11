@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="studio.waterwell.villaapp.Actividades.LugarClicado">
+
+    <TextView
+        android:id="@+id/lugar_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/lugar_direccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/lugar_nombre"
+        android:layout_below="@+id/lugar_nombre"
+        android:layout_marginTop="19dp"
+        android:text="TextView" />
+
+    <RelativeLayout
+        android:id="@+id/layout_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/lugar_direccion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp">
+
+        <TextView
+            android:id="@+id/lugar_descripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/lugar_atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="@string/lugar_atras"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/lugar_ruta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lugar_atras"
+        android:layout_toStartOf="@+id/lugar_atras"
+        android:text="@string/lugar_ruta" />
+
+    <Button
+        android:id="@+id/lugar_opinion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lugar_ruta"
+        android:layout_toStartOf="@+id/lugar_ruta"
+        android:text="@string/lugar_opinion" />
+</RelativeLayout>

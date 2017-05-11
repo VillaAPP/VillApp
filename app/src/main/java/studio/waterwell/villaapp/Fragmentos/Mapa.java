@@ -3,6 +3,7 @@ package studio.waterwell.villaapp.Fragmentos;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -11,13 +12,12 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,14 +32,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
+import studio.waterwell.villaapp.Modelo.Usuario;
 
 
-public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
+
+public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
+
+    private final int LUGAR = 1;
+
+    private final int MODIFICADO = 1;
+    private final int RUTA = 2;
 
     /* array de lugares */
 
     private ArrayList<Lugar> lugares;
+    private Usuario usuario;
+    private Marker marcado;
     private ICambios cambios;
     private GoogleMap gMap;
     private Location location;
@@ -63,10 +73,11 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         // Required empty public constructor
     }
 
-    public static Mapa newInstance(ArrayList<Lugar> lugares) {
+    public static Mapa newInstance(ArrayList<Lugar> lugares, Usuario usuario) {
         Mapa fragment = new Mapa();
         Bundle args = new Bundle();
         args.putParcelableArrayList("lugares", lugares);
+        args.putParcelable("usuario", usuario);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,9 +85,12 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             lugares = getArguments().getParcelableArrayList("lugares");
+            usuario = getArguments().getParcelable("usuario");
         }
+
         location = null;
         lineOptions = null;
         enRuta = false;
@@ -125,7 +139,19 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
         gMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                marker.showInfoWindow();
+                marcado = marker;
+
+                Lugar lugarAuxiliar = (Lugar) marcado.getTag();
+
+                Intent i = new Intent();
+                i.setAction("android.intent.action.lugar");
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("usuario", usuario);
+                bundle.putParcelable("lugar", lugarAuxiliar);
+                i.putExtra("bundle", bundle);
+                startActivityForResult(i, LUGAR);
+
                 return true;
             }
         });
@@ -270,5 +296,33 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         cambios = (ICambios) getActivity();
+    }
+
+
+    // Recoge los datos de la actividad Lugar
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bundle bundle = data.getBundleExtra("bundle");
+        Lugar modificado;
+
+        if(resultCode == getActivity().RESULT_OK){
+
+            int opcion = bundle.getInt("opcion");
+            // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+            switch (opcion){
+                case MODIFICADO:{
+                    modificado = bundle.getParcelable("lugar");
+                    marcado.setTag(modificado);
+                }break;
+                case RUTA: {
+                    double lat = bundle.getDouble("latitud");
+                    double lng = bundle.getDouble("longitud");
+                    cambios.mandarCoordenadas(new LatLng(lat,lng));
+                }break;
+            }
+        }
+
     }
 }

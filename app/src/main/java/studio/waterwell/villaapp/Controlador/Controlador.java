@@ -6,8 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import studio.waterwell.villaapp.BD.DAOUsuario;
 import studio.waterwell.villaapp.BD.ObtenerRuta;
-import studio.waterwell.villaapp.BD.ObtenerUbicacion;
-import studio.waterwell.villaapp.Fragmentos.ICambios;
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Usuario;
 
 /**

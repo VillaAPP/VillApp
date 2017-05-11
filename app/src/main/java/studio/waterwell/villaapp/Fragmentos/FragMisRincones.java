@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.R;
 
 

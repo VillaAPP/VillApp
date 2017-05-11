@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -25,7 +24,7 @@ import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
 import studio.waterwell.villaapp.Fragmentos.FragRincones;
-import studio.waterwell.villaapp.Fragmentos.ICambios;
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
@@ -66,7 +65,6 @@ public class Principal extends AppCompatActivity
         lugares = bundle.getParcelableArrayList("lugares");
     }
 
-
     // Cambia la cabecera de la barra por los valores del usuario logeado
     private void actualizarCabeceraUser(){
 
@@ -98,7 +96,7 @@ public class Principal extends AppCompatActivity
 
         // Inicio los fragmentos
         fragmentManager = getSupportFragmentManager();
-        fragMapa = FragMapa.newInstance(this.lugares);
+        fragMapa = FragMapa.newInstance(this.lugares, this.usuario);
         fragRincones = FragRincones.newInstance(this.lugares);
         fragMisRincones= FragMisRincones.newInstance();
 
@@ -170,7 +168,7 @@ public class Principal extends AppCompatActivity
         }
     }
 
-    // Manda las coordenadas desde el fragmento MisRincones a principal para trazar una ruta
+    // Manda las coordenadas desde el fragmento Mapa a principal para trazar una ruta
     @Override
     public void mandarCoordenadas(LatLng latLng) {
         atras = false;
@@ -178,7 +176,6 @@ public class Principal extends AppCompatActivity
         fragMapa.moverUbicacion(latLng);
         LatLng miUbicacion = fragMapa.obtenerMiUbicacion();
         controlador.obtenerRuta(this, ubicacion, miUbicacion);
-        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
     }
 
     @Override

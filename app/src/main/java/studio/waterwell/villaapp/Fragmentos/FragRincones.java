@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
 import studio.waterwell.villaapp.Modelo.AdaptadorLista;
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.R;
 

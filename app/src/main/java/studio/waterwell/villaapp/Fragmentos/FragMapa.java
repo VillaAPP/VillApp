@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
+import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 public class FragMapa extends Fragment {
@@ -30,11 +32,12 @@ public class FragMapa extends Fragment {
         // Required empty public constructor
     }
 
-    public static FragMapa newInstance(ArrayList<Lugar> lugares) {
+    public static FragMapa newInstance(ArrayList<Lugar> lugares, Usuario usuario) {
         FragMapa fragment = new FragMapa();
         Bundle args = new Bundle();
 
         args.putParcelableArrayList("lugares", lugares);
+        args.putParcelable("usuario", usuario);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,7 +56,8 @@ public class FragMapa extends Fragment {
         View v = inflater.inflate(R.layout.fragment_mapa2, container, false);
 
         ArrayList<Lugar>  lugares = getArguments().getParcelableArrayList("lugares");
-        mapa = Mapa.newInstance(lugares);
+        Usuario usuario = getArguments().getParcelable("usuario");
+        mapa = Mapa.newInstance(lugares, usuario);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_mapa, mapa)
                 .commit();

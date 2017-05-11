@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA0ZT_DPBr2ZkxukV2WZDAOpUwBx-sZwnQ" />
@@ -47,6 +46,13 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.principal" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Actividades.LugarClicado">
+            <intent-filter>
+                <action android:name="android.intent.action.lugar" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
