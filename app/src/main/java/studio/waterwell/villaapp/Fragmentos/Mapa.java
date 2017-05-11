@@ -305,17 +305,16 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
         super.onActivityResult(requestCode, resultCode, data);
 
         Bundle bundle = data.getBundleExtra("bundle");
-        Lugar modificado;
+
 
         if(resultCode == getActivity().RESULT_OK){
+
+            Lugar  modificado = bundle.getParcelable("lugar");
+            marcado.setTag(modificado);
 
             int opcion = bundle.getInt("opcion");
             // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
             switch (opcion){
-                case MODIFICADO:{
-                    modificado = bundle.getParcelable("lugar");
-                    marcado.setTag(modificado);
-                }break;
                 case RUTA: {
                     double lat = bundle.getDouble("latitud");
                     double lng = bundle.getDouble("longitud");

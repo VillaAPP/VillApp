@@ -75,5 +75,4 @@ public class DAOUsuario {
         cerrarBD();
     }
 
-    //TODO: Insertar y borrar un usuario
 }

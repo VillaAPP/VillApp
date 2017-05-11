@@ -1,4 +1,4 @@
-package studio.waterwell.villaapp.BD;
+package studio.waterwell.villaapp.BD.WebService;
 
 import android.content.Context;
 import android.database.SQLException;

@@ -6,11 +6,13 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 /**
  * Created by Nadrixa on 10/05/2017.
  */
 
-public class Lugar implements Parcelable {
+public class Lugar implements Parcelable{
 
     /*
     Atributos
@@ -24,13 +26,12 @@ public class Lugar implements Parcelable {
     private String descripcion;
     private String rutaImagen;
     private Bitmap imagen;
-
+    private ArrayList<Opinion> opiniones;
     /*
     Constructor
      */
 
     public Lugar() {
-
     }
 
     /*
@@ -110,6 +111,22 @@ public class Lugar implements Parcelable {
         this.imagen = imagen;
     }
 
+    public void setOpiniones(ArrayList<Opinion> opiniones){
+        this.opiniones = opiniones;
+    }
+
+    public ArrayList<Opinion> getOpiniones(){
+        return opiniones;
+    }
+
+    public int getNumOpiniones(){
+        int aux;
+        if(opiniones == null)
+            aux = 0;
+        else
+            aux = opiniones.size();
+        return aux;
+    }
 
     protected Lugar(Parcel in) {
         id = in.readString();
@@ -120,6 +137,12 @@ public class Lugar implements Parcelable {
         descripcion = in.readString();
         rutaImagen = in.readString();
         imagen = (Bitmap) in.readValue(Bitmap.class.getClassLoader());
+        if (in.readByte() == 0x01) {
+            opiniones = new ArrayList<Opinion>();
+            in.readList(opiniones, Opinion.class.getClassLoader());
+        } else {
+            opiniones = null;
+        }
     }
 
     @Override
@@ -137,6 +160,12 @@ public class Lugar implements Parcelable {
         dest.writeString(descripcion);
         dest.writeString(rutaImagen);
         dest.writeValue(imagen);
+        if (opiniones == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(opiniones);
+        }
     }
 
     @SuppressWarnings("unused")

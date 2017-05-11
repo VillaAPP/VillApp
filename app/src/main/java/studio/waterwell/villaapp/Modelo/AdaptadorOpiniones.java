@@ -8,22 +8,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
 
 import studio.waterwell.villaapp.R;
 
 /**
- * Created by Efecto Dopler on 10/05/2017.
+ * Created by Efecto Dopler on 11/05/2017.
  */
 
-public class AdaptadorLista extends BaseAdapter {
+public class AdaptadorOpiniones extends BaseAdapter {
     private Activity actividad;
-    private ArrayList<Lugar> lista;
+    private ArrayList<Opinion> lista;
 
-    public AdaptadorLista(Activity actividad, ArrayList<Lugar> lugares){
-        lista = lugares;
+    public AdaptadorOpiniones(Activity actividad, ArrayList<Opinion> opiniones){
+        lista = opiniones;
         this.actividad = actividad;
     }
     @Override
@@ -48,19 +46,22 @@ public class AdaptadorLista extends BaseAdapter {
         // Inflo la vista cogiendo el inflater del activity e inflando el layout de cada item
         if(v == null){
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.item_rincon, null);
+            v = inflater.inflate(R.layout.item_opinion, null);
         }
 
-        TextView nombre = (TextView) v.findViewById(R.id.item_nombre);
-        TextView direccion = (TextView) v.findViewById(R.id.item_direccion);
+        TextView nombre = (TextView) v.findViewById(R.id.item_opinion_nombre);
+        TextView opinion = (TextView) v.findViewById(R.id.item_opinion_opinion);
+        TextView rate = (TextView) v.findViewById(R.id.item_opnion_rate) ;
 
-        nombre.setText(lista.get(position).getNombre());
-        direccion.setText(lista.get(position).getDireccion());
+        nombre.setText(lista.get(position).getUserName());
+        opinion.setText(lista.get(position).getOpinion());
+        String aux = Integer.toString(lista.get(position).getRate());
+        rate.setText(aux);
 
         return v;
     }
 
-    public void setLista(ArrayList<Lugar> lugares){
-        lista = lugares;
+    public void setLista(ArrayList<Opinion> opiniones){
+        lista = opiniones;
     }
 }

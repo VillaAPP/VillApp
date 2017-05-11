@@ -1,4 +1,4 @@
-package studio.waterwell.villaapp.BD;
+package studio.waterwell.villaapp.BD.WebService;
 
 import android.os.AsyncTask;
 import com.google.android.gms.maps.model.LatLng;
