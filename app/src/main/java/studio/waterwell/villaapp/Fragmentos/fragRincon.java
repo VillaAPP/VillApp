@@ -64,7 +64,6 @@ public class fragRincon extends Fragment {
 
             if(lugar.getNumOpiniones() != 0){
                 opiniones = lugar.getOpiniones();
-                calcularRate();
             }
 
             adaptador = new AdaptadorOpiniones(getActivity(), opiniones);
@@ -104,6 +103,8 @@ public class fragRincon extends Fragment {
 
         layoutCara = (RelativeLayout) v.findViewById(R.id.layout_carga);
         layoutDatos = (RelativeLayout) v.findViewById(R.id.layout_lista);
+
+        calcularRate();
 
         nombre.setText(lugar.getNombre());
         direccion.setText(lugar.getDireccion());
