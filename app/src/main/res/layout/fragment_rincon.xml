@@ -26,29 +26,24 @@
             android:layout_below="@+id/lugar_nombre"
             android:layout_alignStart="@+id/lugar_rate" />
 
-        <RelativeLayout
-            android:id="@+id/layout_descripcion"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="23dp"
-            android:layout_below="@+id/lugar_rate"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:id="@+id/lugar_descripcion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/lugar_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lugar_direccion"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="12dp"
+            android:text="Puntuacion : Sin puntuaciones de usuario" />
 
         <Button
             android:id="@+id/lugar_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:text="@string/lugar_atras"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="14dp"
+            android:text="@string/lugar_atras" />
 
         <Button
             android:id="@+id/lugar_ruta"
@@ -65,6 +60,21 @@
             android:layout_alignBottom="@+id/lugar_ruta"
             android:layout_toStartOf="@+id/lugar_ruta"
             android:text="@string/lugar_opinion1" />
+
+        <RelativeLayout
+            android:id="@+id/layout_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/lugar_rate"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/lugar_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -100,16 +110,6 @@
                     android:layout_marginTop="39dp" />
             </RelativeLayout>
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/lugar_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Puntuacion : Sin puntuaciones de usuario"
-            android:layout_marginStart="21dp"
-            android:layout_below="@+id/lugar_direccion"
-            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

@@ -90,6 +90,7 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones{
         Bundle bundle = new Bundle();
         bundle.putInt("opcion", 0);
         bundle.putParcelable("lugar", lugar);
+        bundle.putParcelable("usuario", usuario);
         i.putExtra("bundle", bundle);
 
         setResult(RESULT_OK, i);

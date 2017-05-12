@@ -157,6 +157,43 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
         });
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cambios = (ICambios) getActivity();
+    }
+
+
+    // Recoge los datos de la actividad Lugar
+    // TODO: Falta ver cuando se ha hecho una opinion
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bundle bundle = data.getBundleExtra("bundle");
+
+        if(resultCode == getActivity().RESULT_OK){
+            if(requestCode == MAPA){
+
+                Lugar  modificado = bundle.getParcelable("lugar");
+                marcado.setTag(modificado);
+                int opcion = bundle.getInt("opcion");
+
+                // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+                if(opcion == RUTA){
+                    double lat = bundle.getDouble("latitud");
+                    double lng = bundle.getDouble("longitud");
+                    cambios.mandarCoordenadas(new LatLng(lat,lng));
+                }
+
+                else
+                    usuario = bundle.getParcelable("usuario");
+            }
+        }
+
+    }
+
+
     // Actualiza longitud y latitud de la ubicacion del usuario
     private void actualizarUbicacion(Location location) {
 
@@ -229,7 +266,7 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
             gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
     }
 
-   // Devuelve las coordenadas del usuario
+    // Devuelve las coordenadas del usuario
     public LatLng getMisCoordenadas(){
         return misCoordenadas;
     }
@@ -292,35 +329,4 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
         enRuta = false;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        cambios = (ICambios) getActivity();
-    }
-
-
-    // Recoge los datos de la actividad Lugar
-    // TODO: Falta ver cuando se ha hecho una opinion
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Bundle bundle = data.getBundleExtra("bundle");
-
-        if(resultCode == getActivity().RESULT_OK){
-            if(requestCode == MAPA){
-                Lugar  modificado = bundle.getParcelable("lugar");
-                marcado.setTag(modificado);
-                int opcion = bundle.getInt("opcion");
-
-                // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
-                if(opcion == RUTA){
-                    double lat = bundle.getDouble("latitud");
-                    double lng = bundle.getDouble("longitud");
-                    cambios.mandarCoordenadas(new LatLng(lat,lng));
-                }
-            }
-        }
-
-    }
 }
