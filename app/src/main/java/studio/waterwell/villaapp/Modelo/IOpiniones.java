@@ -8,5 +8,14 @@ import java.util.ArrayList;
 
 public interface IOpiniones {
 
+    // Devuelve a fragRincon las opiniones cargadas por el AsynkTask CargarOpinion
     public void cargarOpiniones(ArrayList<Opinion> opiniones);
+
+    // Al clicar en in atras en el fragmento de rincon se vuelve a la actividad del mapa con las coordenadas
+    public void cargarRuta();
+
+    // Al clicar en in atras en el fragmento de rincon se vuelve a la actividad del mapa
+    public void irAtras();
+
+    public void darOpinion();
 }

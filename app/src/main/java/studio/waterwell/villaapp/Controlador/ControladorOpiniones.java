@@ -13,9 +13,13 @@ public class ControladorOpiniones {
     private Context contexto;
     private IOpiniones iOpiniones;
     private String idLugar;
-    public ControladorOpiniones(Context contexto, IOpiniones iOpiniones, String id) {
+    public ControladorOpiniones(Context contexto, IOpiniones iOpiniones) {
         this.iOpiniones = iOpiniones;
         this.contexto = contexto;
+
+    }
+
+    public void getId(String id){
         this.idLugar = id;
     }
 
@@ -23,4 +27,7 @@ public class ControladorOpiniones {
         this.cargarOpiniones = new CargarOpiniones(this.iOpiniones);
         cargarOpiniones.execute(idLugar);
     }
+
+    // TODO: Mandar la opinion tanto a la bd externa como interna.
+    public void mandarOpinion(){}
 }

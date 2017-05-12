@@ -300,26 +300,24 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
 
     // Recoge los datos de la actividad Lugar
+    // TODO: Falta ver cuando se ha hecho una opinion
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         Bundle bundle = data.getBundleExtra("bundle");
 
-
         if(resultCode == getActivity().RESULT_OK){
 
             Lugar  modificado = bundle.getParcelable("lugar");
             marcado.setTag(modificado);
-
             int opcion = bundle.getInt("opcion");
+
             // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
-            switch (opcion){
-                case RUTA: {
-                    double lat = bundle.getDouble("latitud");
-                    double lng = bundle.getDouble("longitud");
-                    cambios.mandarCoordenadas(new LatLng(lat,lng));
-                }break;
+           if(opcion == RUTA){
+               double lat = bundle.getDouble("latitud");
+               double lng = bundle.getDouble("longitud");
+               cambios.mandarCoordenadas(new LatLng(lat,lng));
             }
         }
 

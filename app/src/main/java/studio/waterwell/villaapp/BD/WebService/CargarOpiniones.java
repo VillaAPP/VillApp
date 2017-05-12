@@ -27,7 +27,6 @@ import studio.waterwell.villaapp.Modelo.Opinion;
  * Created by Efecto Dopler on 11/05/2017.
  */
 
-// Por hacer
 public class CargarOpiniones extends AsyncTask<String, Void, ArrayList<Opinion>> {
 
     private IOpiniones iOpiniones;
@@ -130,7 +129,7 @@ public class CargarOpiniones extends AsyncTask<String, Void, ArrayList<Opinion>>
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Opinion> opiniones) {
-        iOpiniones.cargarOpiniones(opiniones);
+    protected void onPostExecute(ArrayList<Opinion> lista) {
+        iOpiniones.cargarOpiniones(lista);
     }
 }
