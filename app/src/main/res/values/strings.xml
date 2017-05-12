@@ -16,7 +16,8 @@
     <string name="fragmento_mis_rincones">Rincones visitados</string>
 
     <string name="lugar_atras">Volver al mapa</string>
-    <string name="lugar_opinion">Dar opinion</string>
+    <string name="lugar_opinion1">Dar opinion</string>
+    <string name="lugar_opinion2">Leer mi opinion</string>
     <string name="lugar_ruta">Crear una ruta</string>
 
     <!-- TODO: Remove or change this placeholder text -->

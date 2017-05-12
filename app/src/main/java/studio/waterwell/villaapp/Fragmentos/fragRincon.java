@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import studio.waterwell.villaapp.Controlador.ControladorOpiniones;
 import studio.waterwell.villaapp.Modelo.AdaptadorOpiniones;
@@ -40,16 +44,20 @@ public class fragRincon extends Fragment {
     private  ArrayList<Opinion> opiniones;
     private IOpiniones iOpiniones;
     private Lugar lugar;
+    private LatLng misCoordenadas;
 
     public fragRincon() {
         // Required empty public constructor
     }
 
 
-    public static fragRincon newInstance(Lugar lugar) {
+    public static fragRincon newInstance(Lugar lugar, double lat, double lng, boolean existe) {
         fragRincon fragment = new fragRincon();
         Bundle args = new Bundle();
         args.putParcelable("lugar", lugar);
+        args.putDouble("latitud", lat);
+        args.putDouble("longitud", lng);
+        args.putBoolean("existe", existe);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,6 +69,11 @@ public class fragRincon extends Fragment {
         if (getArguments() != null) {
             lugar = getArguments().getParcelable("lugar");
             opiniones = new ArrayList<Opinion>();
+
+            double latAux = getArguments().getDouble("latitud");
+            double lngAux = getArguments().getDouble("longitud");
+
+            misCoordenadas = new LatLng(latAux, lngAux);
 
             if(lugar.getNumOpiniones() != 0){
                 opiniones = lugar.getOpiniones();
@@ -77,8 +90,10 @@ public class fragRincon extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        boolean existe = getArguments().getBoolean("existe");
+
         View v = inflater.inflate(R.layout.fragment_rincon, container, false);
-        cargarVista(v);
+        cargarVista(v, existe);
 
         return v;
     }
@@ -90,9 +105,13 @@ public class fragRincon extends Fragment {
     }
 
     // TODO: Falta cargar la foto del lugar.
-    private void cargarVista(View v){
+    private void cargarVista(View v, boolean existe){
         atras = (Button) v.findViewById(R.id.lugar_atras);
         opinar = (Button) v.findViewById(R.id.lugar_opinion);
+
+        if(existe)
+            opinar.setText(R.string.lugar_opinion2);
+
         ruta = (Button) v.findViewById(R.id.lugar_ruta);
 
         nombre = (TextView) v.findViewById(R.id.lugar_nombre);
@@ -138,7 +157,7 @@ public class fragRincon extends Fragment {
         opinar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOpiniones.darOpinion();
+                iOpiniones.darOpinion(misCoordenadas, lugar.obtenerCoordenadas());
             }
         });
     }
@@ -165,5 +184,7 @@ public class fragRincon extends Fragment {
             rateTotal.setText("Puntuacion :" + Integer.toString(rate/i));
 
     }
+
+
 
 }

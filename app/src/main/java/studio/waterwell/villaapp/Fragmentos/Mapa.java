@@ -40,9 +40,7 @@ import studio.waterwell.villaapp.Modelo.Usuario;
 
 public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
-    private final int LUGAR = 1;
-
-    private final int MODIFICADO = 1;
+    private final int MAPA = 1;
     private final int RUTA = 2;
 
     /* array de lugares */
@@ -149,8 +147,10 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("usuario", usuario);
                 bundle.putParcelable("lugar", lugarAuxiliar);
+                bundle.putDouble("latitud", misCoordenadas.latitude);
+                bundle.putDouble("longitud", misCoordenadas.longitude);
                 i.putExtra("bundle", bundle);
-                startActivityForResult(i, LUGAR);
+                startActivityForResult(i, MAPA);
 
                 return true;
             }
@@ -308,16 +308,17 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
         Bundle bundle = data.getBundleExtra("bundle");
 
         if(resultCode == getActivity().RESULT_OK){
+            if(requestCode == MAPA){
+                Lugar  modificado = bundle.getParcelable("lugar");
+                marcado.setTag(modificado);
+                int opcion = bundle.getInt("opcion");
 
-            Lugar  modificado = bundle.getParcelable("lugar");
-            marcado.setTag(modificado);
-            int opcion = bundle.getInt("opcion");
-
-            // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
-           if(opcion == RUTA){
-               double lat = bundle.getDouble("latitud");
-               double lng = bundle.getDouble("longitud");
-               cambios.mandarCoordenadas(new LatLng(lat,lng));
+                // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+                if(opcion == RUTA){
+                    double lat = bundle.getDouble("latitud");
+                    double lng = bundle.getDouble("longitud");
+                    cambios.mandarCoordenadas(new LatLng(lat,lng));
+                }
             }
         }
 

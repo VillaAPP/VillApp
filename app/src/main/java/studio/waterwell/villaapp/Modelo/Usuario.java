@@ -3,6 +3,9 @@ package studio.waterwell.villaapp.Modelo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+
 /**
  * Created by Efecto Dopler on 02/05/2017.
  */
@@ -10,11 +13,14 @@ import android.os.Parcelable;
 public class Usuario implements Parcelable {
     private String userName;
     private String password;
+    private ArrayList<MiOpinion> opiniones;
+
     // TODO: Meter un ArrayList de sitios visitados. Eso implicará modificar el parcelable
 
     public Usuario(String userName, String password){
         this.userName = userName;
         this.password = password;
+        this.opiniones = new ArrayList<MiOpinion>();
     }
 
 
@@ -32,6 +38,14 @@ public class Usuario implements Parcelable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ArrayList<MiOpinion> getOpiniones(){
+        return opiniones;
+    }
+
+    public void addOpinion(MiOpinion opinion){
+        opiniones.add(opinion);
     }
 
     protected Usuario(Parcel in) {

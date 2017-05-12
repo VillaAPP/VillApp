@@ -1,5 +1,7 @@
 package studio.waterwell.villaapp.Modelo;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 /**
@@ -17,5 +19,5 @@ public interface IOpiniones {
     // Al clicar en in atras en el fragmento de rincon se vuelve a la actividad del mapa
     public void irAtras();
 
-    public void darOpinion();
+    public void darOpinion(LatLng l1, LatLng l2);
 }

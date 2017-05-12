@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/lugar_ruta"
             android:layout_toStartOf="@+id/lugar_ruta"
-            android:text="@string/lugar_opinion" />
+            android:text="@string/lugar_opinion1" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -98,7 +98,7 @@ public class Principal extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         fragMapa = FragMapa.newInstance(this.lugares, this.usuario);
         fragRincones = FragRincones.newInstance(this.lugares);
-        fragMisRincones= FragMisRincones.newInstance();
+        fragMisRincones = FragMisRincones.newInstance(lugares, usuario);
 
         // Los coloco en el controlador de fragmentos y oculto todos menos el del mapa
         fragmentManager.beginTransaction()
