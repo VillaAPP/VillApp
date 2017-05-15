@@ -63,4 +63,8 @@ public class AdaptadorLista extends BaseAdapter {
     public void setLista(ArrayList<Lugar> lugares){
         lista = lugares;
     }
+
+    public void setLugar(Lugar lugar, int posicion){
+        lista.set(posicion, lugar);
+    }
 }

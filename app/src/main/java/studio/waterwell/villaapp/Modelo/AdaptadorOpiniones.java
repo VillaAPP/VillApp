@@ -64,4 +64,5 @@ public class AdaptadorOpiniones extends BaseAdapter {
     public void setLista(ArrayList<Opinion> opiniones){
         lista = opiniones;
     }
+
 }

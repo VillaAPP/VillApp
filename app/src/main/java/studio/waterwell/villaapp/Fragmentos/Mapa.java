@@ -133,22 +133,20 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(misCoordenadas, 16));
 
-        //TODO: Fijar el evento de que cuando clico en un marcador aparece la info del lugar
         gMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marcado = marker;
-
                 Lugar lugarAuxiliar = (Lugar) marcado.getTag();
 
-                Intent i = new Intent();
-                i.setAction("android.intent.action.lugar");
-
                 Bundle bundle = new Bundle();
+                Intent i = new Intent();
+
                 bundle.putParcelable("usuario", usuario);
                 bundle.putParcelable("lugar", lugarAuxiliar);
                 bundle.putDouble("latitud", misCoordenadas.latitude);
                 bundle.putDouble("longitud", misCoordenadas.longitude);
+                i.setAction("android.intent.action.lugar");
                 i.putExtra("bundle", bundle);
                 startActivityForResult(i, MAPA);
 
@@ -209,7 +207,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
         }
 
         // Si no hay una localizacion previa carga la puerta del Sol
-        // TODO: Ver si esto funciona
         else{
             lat = 40.4166635;
             lng = -3.7041686999999683;

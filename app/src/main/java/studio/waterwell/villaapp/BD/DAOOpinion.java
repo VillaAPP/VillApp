@@ -54,7 +54,7 @@ public class DAOOpinion {
 
     // Cargo todas las opiniones del usuario
     public ArrayList<MiOpinion> cargarOpiniones(){
-        ArrayList<MiOpinion> lista = null;
+        ArrayList<MiOpinion> lista = new ArrayList<MiOpinion>();
 
         abrirBDLectura();
 

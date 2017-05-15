@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import studio.waterwell.villaapp.Modelo.AdaptadorLista;
 import studio.waterwell.villaapp.Modelo.Lugar;
@@ -21,6 +24,7 @@ public class FragMisRincones extends Fragment {
     private ListView lista;
     private AdaptadorLista adaptador;
     private Usuario usuario;
+    private int posicion;
 
     public FragMisRincones() {
         // Required empty public constructor
@@ -79,10 +83,9 @@ public class FragMisRincones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Lugar lugar = (Lugar) parent.getItemAtPosition(position);
-                // TODO: llamar a actividad fragRincon
+                posicion = position;
                 Intent i = new Intent();
                 i.setAction("android.intent.action.lugar");
-
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("usuario", usuario);
                 bundle.putParcelable("lugar", lugar);
@@ -95,5 +98,21 @@ public class FragMisRincones extends Fragment {
         });
 
         return v;
+    }
+
+    // Recoge los datos de los lugares vistados
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bundle bundle = data.getBundleExtra("bundle");
+
+        if(resultCode == getActivity().RESULT_OK){
+            if(requestCode == OPINION){
+                Lugar  modificado = bundle.getParcelable("lugar");
+                adaptador.setLugar(modificado, posicion);
+                adaptador.notifyDataSetChanged();
+            }
+        }
     }
 }

@@ -15,7 +15,6 @@ public class Usuario implements Parcelable {
     private String password;
     private ArrayList<MiOpinion> opiniones;
 
-    // TODO: Meter un ArrayList de sitios visitados. Eso implicará modificar el parcelable
 
     public Usuario(String userName, String password){
         this.userName = userName;
@@ -44,6 +43,10 @@ public class Usuario implements Parcelable {
         return opiniones;
     }
 
+    public void addOpiniones(ArrayList<MiOpinion> opiniones){
+        this.opiniones = opiniones;
+    }
+
     public void addOpinion(MiOpinion opinion){
         opiniones.add(opinion);
     }
@@ -51,6 +54,12 @@ public class Usuario implements Parcelable {
     protected Usuario(Parcel in) {
         userName = in.readString();
         password = in.readString();
+        if (in.readByte() == 0x01) {
+            opiniones = new ArrayList<MiOpinion>();
+            in.readList(opiniones, MiOpinion.class.getClassLoader());
+        } else {
+            opiniones = null;
+        }
     }
 
     @Override
@@ -62,6 +71,12 @@ public class Usuario implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userName);
         dest.writeString(password);
+        if (opiniones == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(opiniones);
+        }
     }
 
     @SuppressWarnings("unused")

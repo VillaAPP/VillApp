@@ -12,22 +12,17 @@ import studio.waterwell.villaapp.Modelo.Lugar;
  */
 
 public class ControladorLugar {
-
-
     private ArrayList<Lugar> lugares;
     private DAOLugar daoLugar;
     private Context contexto;
 
-
     public ControladorLugar(Context contexto) {
         this.contexto = contexto;
-        this.daoLugar = new DAOLugar(contexto);
+        this.daoLugar = new DAOLugar(this.contexto);
         this.lugares = daoLugar.getLugares();
     }
 
     public ArrayList<Lugar> getLugares() {
         return lugares;
     }
-
-
 }

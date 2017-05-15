@@ -74,15 +74,6 @@ public class Credenciales extends AppCompatActivity {
             Intent i = new Intent();
             i.setAction("android.intent.action.datosLogin");
             Bundle bundle = new Bundle();
-
-            // Login
-            if(estado.equals("1"))
-                bundle.putBoolean("Registro", false);
-
-            // Registro
-            else
-                bundle.putBoolean("Registro", true);
-
             bundle.putParcelableArrayList("lugares", lugares);
             bundle.putParcelable("Usuario", usuario);
             i.putExtra("Bundle", bundle);
