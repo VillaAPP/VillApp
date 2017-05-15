@@ -365,4 +365,35 @@
             Fuente: www.guias-viajar.com
         </descripcion>
     </lugar>
+    <lugar>
+        <id>24</id>
+        <nombre>CALLE DEL CODO</nombre>
+        <direccion>Calle del Codo, 1, 28005 Madrid, España</direccion>
+        <latitud>40.415101</latitud>
+        <longitud>-3.709843</longitud>
+        <img></img>
+        <descripcion>
+            Como nexo entre las plazas de la Villa y del Conde Miranda se sitúa la histórica calle del Codo, estrecha y castiza a lo largo de poco más de setenta metros de empedrado. Ajena al sol, tan sombría y oscura que casi no conoce el día, perdura en el callejero de Madrid como una suerte de reliquia del Siglo de Oro.
+            Al ser un lugar de tránsito entre las tabernas de la Villa, fue un punto habitual de duelos entre caballeros. De hecho, por su condición de callejón oscuro era frecuente escenario de emboscadas, reyertas y duelos (que se prohibieron durante la época de los Reyes Católicos, pero seguían produciéndose a menudo de espaldas a la autoridad).
+            Además del uso pendenciero de esta calle, es famosa por otro “uso” a la que la sometía uno de los escritores más famosos del Siglo de Oro español: Francisco de Quevedo. Lo que relaciona a Quevedo con la calle del Codo es su predilección por miccionar en ella. Cada noche, al regresar de su ronda por las tabernas de Madrid, Quevedo se detenía a orinar en la misma tapia, desatando el enfado de quienes allí vivían. Incluso se ha dicho que uno de los vecinos, con la intención de tocar la conciencia del literato, pintó una cruz con el mensaje «No se mea donde hay una cruz». Él, fiel a su ironía, contestó con un nuevo depósito y otra frase: «No se coloca una cruz donde se mea».
+            Fuente: www.abc.es
+        </descripcion>
+    </lugar>
+    <lugar>
+        <id>25</id>
+        <nombre>PLAZA DE LA VILLA</nombre>
+        <direccion>Plaza de la Villa, s/n, 28005 Madrid, España</direccion>
+        <latitud>40.41534</latitud>
+        <longitud>-3.710414</longitud>
+        <img></img>
+        <descripcion>
+            La Plaza de la Villa (antes plaza de San Salvador) está situada en el casco histórico de Madrid (España), junto a la calle Mayor. En ella tienen su origen tres pequeñas calles, correspondientes al primitivo trazado medieval de la ciudad: la del Codo aparece por el este, la del Cordón por el sur y la de Madrid por el oeste.
+            En su contorno se encuentran las fachadas principales de tres edificios de gran valor histórico-artístico, levantados en diferentes siglos. El más antiguo es la Casa y Torre de los Lujanes (siglo XV), construido en estilo gótico-mudéjar, que se emplaza en la cara oriental de la plaza.
+            Le siguen en antigüedad la Casa de Cisneros (siglo XVI), un palacio plateresco que cierra la parte meridional del recinto, y la Casa de la Villa (siglo XVII), de estilo barroco, una de las sedes del Ayuntamiento de Madrid, ubicada en la zona occidental de la plaza.
+            La plaza de la Villa fue uno de los principales núcleos del Madrid medieval, dada su ubicación equidistante entre la puerta de Guadalajara y la de la Vega, dos de los accesos más importantes de la ciudad durante la Edad Media.
+            Originalmente llamada y conocida como plaza de San Salvador, por la iglesia del mismo nombre que daba también a la calle Mayor, y en cuyo pórtico se realizaban las sesiones del Ayuntamiento. Por ese nombre, fuente de San Salvador, se conocería popularmente la primera gran fuente ornamental que el antiguo Consejo de la Villa ordenó construir en la plazuela, reinando aún Felipe III de España.
+            En el siglo XV, se le dio su actual denominación, coincidiendo con la otorgación del título de Noble y Leal Villa recibido por Madrid, de manos del rey Enrique IV de Castilla (1425-1474).
+            Fuente: Wikipedia
+        </descripcion>
+    </lugar>
 </lugares>
