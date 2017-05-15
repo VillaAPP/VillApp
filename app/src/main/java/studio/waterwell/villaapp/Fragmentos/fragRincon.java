@@ -2,6 +2,7 @@ package studio.waterwell.villaapp.Fragmentos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,8 +21,11 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+
+import studio.waterwell.villaapp.Controlador.ControladorLugar;
 import studio.waterwell.villaapp.Controlador.ControladorOpiniones;
 import studio.waterwell.villaapp.Modelo.AdaptadorOpiniones;
+import studio.waterwell.villaapp.Modelo.ILugar;
 import studio.waterwell.villaapp.Modelo.IOpiniones;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Opinion;
@@ -39,12 +44,16 @@ public class fragRincon extends Fragment {
     private RelativeLayout layoutCara;
     private RelativeLayout layoutDatos;
     private AdaptadorOpiniones adaptador;
+    private ImageView imagenLugar;
 
     private ControladorOpiniones controladorOpiniones;
     private  ArrayList<Opinion> opiniones;
     private IOpiniones iOpiniones;
     private Lugar lugar;
     private LatLng misCoordenadas;
+
+    private ControladorLugar controladorLugar;
+    private ILugar ilugar;
 
     public fragRincon() {
         // Required empty public constructor
@@ -160,6 +169,18 @@ public class fragRincon extends Fragment {
                 iOpiniones.darOpinion(misCoordenadas, lugar.obtenerCoordenadas());
             }
         });
+
+        /*
+        Cargar la imagen
+         */
+        this.imagenLugar = (ImageView) v.findViewById(R.id.lugar_imagen);
+        this.controladorLugar = new ControladorLugar(getContext(), this.lugar);
+        this.ilugar = (ILugar) getActivity();
+        this.controladorLugar.cargarImagenLugar(this.ilugar);
+    }
+
+    public void cargarImagen(Bitmap imagen_procesar) {
+        this.imagenLugar.setImageBitmap(imagen_procesar);
     }
 
     public void cargarOpiniones(ArrayList<Opinion> opiniones) {

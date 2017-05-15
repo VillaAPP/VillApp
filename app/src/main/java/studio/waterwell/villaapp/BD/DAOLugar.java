@@ -71,12 +71,15 @@ public class DAOLugar {
                             case "longitud":
                                 lugar.setLongitud(Double.parseDouble(nodoActual.getChildNodes().item(0).getNodeValue()));
                                 break;
-                            case "imagen":
-                                lugar.setRutaImagen(nodoActual.getChildNodes().item(0).getNodeValue());
+                            case "img":
+                                if(nodoActual.hasChildNodes()) {
+                                    lugar.setRutaImagen(nodoActual.getChildNodes().item(0).getNodeValue());
+                                }
                                 break;
                             case "descripcion":
                                 lugar.setDescripcion(nodoActual.getChildNodes().item(0).getNodeValue());
                                 break;
+
                         }
                     }
                 }

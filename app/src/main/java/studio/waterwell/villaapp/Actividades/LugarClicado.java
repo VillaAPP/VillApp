@@ -1,12 +1,14 @@
 package studio.waterwell.villaapp.Actividades;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,13 +23,14 @@ import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.fragOpinion;
 import studio.waterwell.villaapp.Fragmentos.fragRincon;
 import studio.waterwell.villaapp.Modelo.AdaptadorOpiniones;
+import studio.waterwell.villaapp.Modelo.ILugar;
 import studio.waterwell.villaapp.Modelo.IOpiniones;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Opinion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
-public class LugarClicado extends AppCompatActivity implements IOpiniones{
+public class LugarClicado extends AppCompatActivity implements IOpiniones, ILugar{
 
     /* Control de datos */
 
@@ -140,9 +143,10 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones{
 
         if(usuario.getOpiniones() != null){
             int index = 0;
+            int numOpiniones = usuario.getOpiniones().size();
             boolean encontrado = false;
 
-            while(!encontrado){
+            while(!encontrado && index < numOpiniones){
                 if(usuario.getOpiniones().get(index).getId().equals(lugar.getId())){
                     encontrado = true;
                     existe = true;
@@ -190,5 +194,8 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones{
     }
 
 
-
+    @Override
+    public void cargarImagenLugar(Bitmap imagen_procesar) {
+        fragRincon.cargarImagen(imagen_procesar);
+    }
 }
