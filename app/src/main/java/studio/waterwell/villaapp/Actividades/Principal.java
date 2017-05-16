@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import studio.waterwell.villaapp.Controlador.Controlador;
+import studio.waterwell.villaapp.Controlador.ControladorLugar;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
 import studio.waterwell.villaapp.Fragmentos.FragRincones;
@@ -122,6 +123,14 @@ public class Principal extends AppCompatActivity
         cargarNavigationDrawer();
         cargarFragmentos();
         getSupportActionBar().setTitle(getString(R.string.fragmento_mapa));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //TODO: HAY QUE REVISARLO, NO FUNCIONA.
+        ControladorLugar controladorLugar = new ControladorLugar(getApplicationContext(), new Lugar());
+        controladorLugar.borrarImagenes();
     }
 
     // Dice que pasa al clicarse una opcion del menú de lateral

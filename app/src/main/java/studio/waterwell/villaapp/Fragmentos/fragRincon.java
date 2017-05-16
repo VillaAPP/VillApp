@@ -115,7 +115,7 @@ public class fragRincon extends Fragment {
 
     // TODO: Falta cargar la foto del lugar.
     private void cargarVista(View v, boolean existe){
-        atras = (Button) v.findViewById(R.id.lugar_atras);
+
         opinar = (Button) v.findViewById(R.id.lugar_opinion);
 
         if(existe)
@@ -136,7 +136,9 @@ public class fragRincon extends Fragment {
 
         nombre.setText(lugar.getNombre());
         direccion.setText(lugar.getDireccion());
+
         descripcion.setText(lugar.getDescripcion());
+
         lista.setAdapter(adaptador);
 
         // Solo si no hay opiniones del sitio miramos en la BD externa
@@ -148,13 +150,6 @@ public class fragRincon extends Fragment {
             layoutCara.setVisibility(View.INVISIBLE);
             layoutDatos.setVisibility(View.VISIBLE);
         }
-
-        atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iOpiniones.irAtras();
-            }
-        });
 
         ruta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,11 +171,22 @@ public class fragRincon extends Fragment {
         this.imagenLugar = (ImageView) v.findViewById(R.id.lugar_imagen);
         this.controladorLugar = new ControladorLugar(getContext(), this.lugar);
         this.ilugar = (ILugar) getActivity();
-        this.controladorLugar.cargarImagenLugar(this.ilugar);
+        Bitmap imagenLugar = this.controladorLugar.cargarImagen(this.lugar.getId());
+        if(imagenLugar == null) {
+            this.controladorLugar.cargarImagenLugar(this.ilugar);
+        }
+        else {
+            this.imagenLugar.setImageBitmap(imagenLugar);
+        }
+
+
     }
 
     public void cargarImagen(Bitmap imagen_procesar) {
+        this.controladorLugar.guardarImagen(this.lugar.getId(), imagen_procesar);
         this.imagenLugar.setImageBitmap(imagen_procesar);
+        //Debería setear la imagen aquí, pero el comportamiento es errático.
+        //this.lugar.setImagen(imagen_procesar);
     }
 
     public void cargarOpiniones(ArrayList<Opinion> opiniones) {

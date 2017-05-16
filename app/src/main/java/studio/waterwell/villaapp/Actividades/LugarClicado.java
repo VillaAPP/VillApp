@@ -86,8 +86,8 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
         finish();
     }
 
-    @Override
-    public void irAtras() {
+
+    private void irAtras() {
         Intent i = getIntent();
 
         Bundle bundle = new Bundle();
