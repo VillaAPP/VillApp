@@ -54,17 +54,19 @@ public class DAOImagenes {
     }
 
     public void guardarImagen(String idLugar, Bitmap imagen){
-        abriBDEscritura();
-        ContentValues valores = new ContentValues();
+        if(imagen != null) { //PROVISIONAL.
+            abriBDEscritura();
+            ContentValues valores = new ContentValues();
 
-        ByteArrayOutputStream blob = new ByteArrayOutputStream();
-        imagen.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
-        byte[] bitmapdata = blob.toByteArray();
+            ByteArrayOutputStream blob = new ByteArrayOutputStream();
+            imagen.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+            byte[] bitmapdata = blob.toByteArray();
 
-        valores.put("idLugar", idLugar);
-        valores.put("imagen", bitmapdata);
-        bd.insert("Imagenes",null, valores);
-        cerrarBD();
+            valores.put("idLugar", idLugar);
+            valores.put("imagen", bitmapdata);
+            bd.insert("Imagenes", null, valores);
+            cerrarBD();
+        }
     }
 
     public void borrarImagenes(){

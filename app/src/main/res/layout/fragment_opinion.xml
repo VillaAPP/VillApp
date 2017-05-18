@@ -5,9 +5,81 @@
     tools:context="studio.waterwell.villaapp.Fragmentos.fragOpinion">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/opinion_texto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/puntuacion"
+                    android:layout_marginTop="48dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine" />
+
+                <TextView
+                    android:id="@+id/opinion_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAlignment="center"
+                    android:layout_alignTop="@+id/opinion_texto"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/reset_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/opinion_texto"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="99dp"
+                    android:text="Reiniciar" />
+
+                <Button
+                    android:id="@+id/enviar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="58dp"
+                    android:text="Enviar"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/reset_button" />
+
+                <RatingBar
+                    android:id="@+id/puntuacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="37dp"
+                    android:layout_below="@+id/opinion_label"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/opinion_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="47dp"
+                    android:fontFamily="monospace"
+                    android:text="Tu Opinión"
+                    android:textAlignment="center"
+                    android:textSize="40dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

@@ -107,19 +107,19 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
         Toast toast;
 
         if(existe){
-            // cambiarFragmento(fragOpinion, fragRincon);
+            cambiarFragmento(fragOpinion, fragRincon);
             // Meter en fragOpinion todas las cosas que sean necesarias
-            toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
-            toast.show();
+            //toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
+            //toast.show();
             atras = true;
         }
 
         else{
             if(calcularDistancia(l1.latitude, l1.longitude, l2.latitude, l2.longitude)){
-                // cambiarFragmento(fragOpinion, fragRincon);
+                cambiarFragmento(fragOpinion, fragRincon);
                 // Meter en fragOpinion todas las cosas que sean necesarias
-                toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
-                toast.show();
+                //toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
+                //toast.show();
                 atras = true;
 
             }
@@ -158,7 +158,7 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
 
         fragmentManager = getSupportFragmentManager();
         fragRincon = fragRincon.newInstance(this.lugar, lat, lng, existe);
-        fragOpinion = fragOpinion.newInstance(usuario, existe);
+        fragOpinion = fragOpinion.newInstance(usuario, existe, this.lugar.getId());
 
         fragmentManager.beginTransaction()
                 .add(R.id.fragmentoPpalLugar, fragRincon)

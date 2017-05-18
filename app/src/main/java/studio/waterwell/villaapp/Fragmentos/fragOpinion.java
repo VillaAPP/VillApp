@@ -8,10 +8,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import studio.waterwell.villaapp.Controlador.ControladorOpiniones;
 import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.IOpiniones;
+import studio.waterwell.villaapp.Modelo.MiOpinion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
@@ -21,17 +28,25 @@ public class fragOpinion extends Fragment {
     private IOpiniones iOpiniones;
     private ControladorOpiniones controladorOpiniones;
     private Usuario usuario;
+    private String idLugar;
     private boolean existeOpinion;
+
+    private EditText texto_opinion;
+    private Button reset_button;
+    private Button enviar_button;
+    private RatingBar puntuacion;
+    private TextView view_opinion;
 
     public fragOpinion() {
         // Required empty public constructor
     }
 
-    public static fragOpinion newInstance(Usuario usuario, boolean opinion) {
+    public static fragOpinion newInstance(Usuario usuario, boolean opinion, String idLugar) {
         fragOpinion fragment = new fragOpinion();
         Bundle args = new Bundle();
         args.putParcelable("usuario", usuario);
         args.putBoolean("existe", opinion);
+        args.putString("idLugar", idLugar);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,8 +56,10 @@ public class fragOpinion extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null){
-            existeOpinion = getArguments().getBoolean("existe");
-            usuario = getArguments().getParcelable("usuario");
+            this.existeOpinion = getArguments().getBoolean("existe");
+            this.usuario = getArguments().getParcelable("usuario");
+            this.idLugar = getArguments().getString("idLugar");
+
         }
 
         iOpiniones = (IOpiniones) getActivity();
@@ -68,6 +85,42 @@ public class fragOpinion extends Fragment {
 
 
     // TODO: Por hacer todo
-    private void cargarVista(View v){}
+    private void cargarVista(View v){
+
+        this.texto_opinion = (EditText) v.findViewById(R.id.opinion_texto);
+        this.reset_button = (Button) v.findViewById(R.id.reset_button);
+        this.enviar_button = (Button) v.findViewById(R.id.enviar_button);
+        this.puntuacion = (RatingBar) v.findViewById(R.id.puntuacion);
+        this.view_opinion = (TextView) v.findViewById(R.id.opinion_view);
+
+        if(this.existeOpinion) {
+            this.reset_button.setEnabled(false);
+            this.enviar_button.setEnabled(false);
+
+            ArrayList<MiOpinion> listaOpiniones = this.usuario.getOpiniones();
+            boolean encontrado = false;
+            int i = 0;
+            String opinion = "";
+            int puntuacion = 0;
+            while(!encontrado && i < listaOpiniones.size()) {
+                if(listaOpiniones.get(i).getId().equals(this.idLugar)) {
+                    encontrado = true;
+                    opinion = listaOpiniones.get(i).getOpinion();
+                    puntuacion = listaOpiniones.get(i).getRate();
+                }
+                else
+                    i++;
+            }
+
+            this.texto_opinion.setVisibility(View.INVISIBLE);
+            this.view_opinion.setVisibility(View.VISIBLE);
+            this.view_opinion.setText(opinion);
+            this.puntuacion.setRating((float)puntuacion/2);
+            this.puntuacion.setEnabled(false);
+            this.enviar_button.setVisibility(View.INVISIBLE);
+            this.reset_button.setVisibility(View.INVISIBLE);
+        }
+
+    }
 
 }
