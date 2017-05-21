@@ -90,8 +90,8 @@ public class FragMisRincones extends Fragment {
                 bundle.putParcelable("usuario", usuario);
                 bundle.putParcelable("lugar", lugar);
                 // Coordenadas auxiliares ya que no se va a mirar estos parámetros desde aquí
-                bundle.putDouble("latitud", 0.0);
-                bundle.putDouble("longitud", 0.0);
+                bundle.putDouble("latitud", 1.0);
+                bundle.putDouble("longitud", 1.0);
                 i.putExtra("bundle", bundle);
                 startActivityForResult(i, OPINION);
             }
@@ -100,19 +100,4 @@ public class FragMisRincones extends Fragment {
         return v;
     }
 
-    // Recoge los datos de los lugares vistados
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Bundle bundle = data.getBundleExtra("bundle");
-
-        if(resultCode == getActivity().RESULT_OK){
-            if(requestCode == OPINION){
-                Lugar  modificado = bundle.getParcelable("lugar");
-                adaptador.setLugar(modificado, posicion);
-                adaptador.notifyDataSetChanged();
-            }
-        }
-    }
 }

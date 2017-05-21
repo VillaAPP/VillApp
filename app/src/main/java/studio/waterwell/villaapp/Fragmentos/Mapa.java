@@ -191,7 +191,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
     }
 
-
     // Actualiza longitud y latitud de la ubicacion del usuario
     private void actualizarUbicacion(Location location) {
 

@@ -1,10 +1,15 @@
 package studio.waterwell.villaapp.Controlador;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import studio.waterwell.villaapp.BD.DAOImagenes;
+import studio.waterwell.villaapp.BD.DAOOpinion;
 import studio.waterwell.villaapp.BD.DAOUsuario;
+import studio.waterwell.villaapp.BD.Imagenes;
+import studio.waterwell.villaapp.BD.Opiniones;
 import studio.waterwell.villaapp.BD.WebService.ObtenerRuta;
 import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Usuario;
@@ -18,6 +23,9 @@ public class Controlador {
 
     public Controlador(Context c){
         contexto = c;
+        Imagenes imagenes = new Imagenes(this.contexto, "Imagenes", null, 1);
+        DAOImagenes daoImagenes = new DAOImagenes(imagenes);
+        daoImagenes.borrarImagenes();
     }
 
     public boolean existeUsuario(){
