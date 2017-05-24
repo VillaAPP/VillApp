@@ -3,6 +3,7 @@ package studio.waterwell.villaapp.Fragmentos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +15,20 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import studio.waterwell.villaapp.Modelo.AdaptadorLista;
+import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
 
 public class FragMisRincones extends Fragment {
+    private final int RUTA = 2;
     private final int OPINION = 2;
     private ListView lista;
     private AdaptadorLista adaptador;
     private Usuario usuario;
     private int posicion;
+    private ICambios cambios;
 
     public FragMisRincones() {
         // Required empty public constructor
@@ -98,6 +102,32 @@ public class FragMisRincones extends Fragment {
         });
 
         return v;
+    }
+
+    // Recoge los datos de la actividad Lugar
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bundle bundle = data.getBundleExtra("bundle");
+
+        if(resultCode == getActivity().RESULT_OK){
+            if(requestCode == OPINION){
+                int opcion = bundle.getInt("opcion");
+
+                if(opcion == RUTA){
+                    Lugar lugar = (Lugar) adaptador.getItem(posicion);
+                    cambios.mandarCoordenadas(lugar.obtenerCoordenadas());
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cambios = (ICambios) getActivity();
     }
 
 }

@@ -182,6 +182,7 @@ public class Principal extends AppCompatActivity
     public void mandarCoordenadas(LatLng latLng) {
         atras = false;
         ubicacion = latLng;
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
         fragMapa.moverUbicacion(latLng);
         LatLng miUbicacion = fragMapa.obtenerMiUbicacion();
         controlador.obtenerRuta(this, ubicacion, miUbicacion);
