@@ -21,4 +21,7 @@ public interface ICambios {
     public void obtenerRuta(List<List<HashMap<String, String>>> ruta);
 
     public void modificarRuta(LatLng miPosicion);
+
+    // Cuando un usuario crea una opinion, se modifica la actividad principal
+    public void modificarLugaresVistiados(Usuario usuario);
 }

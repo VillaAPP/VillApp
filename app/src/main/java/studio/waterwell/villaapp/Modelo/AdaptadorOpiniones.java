@@ -55,7 +55,7 @@ public class AdaptadorOpiniones extends BaseAdapter {
 
         nombre.setText(lista.get(position).getUserName());
         opinion.setText(lista.get(position).getOpinion());
-        String aux = Integer.toString(lista.get(position).getRate());
+        String aux = Integer.toString(lista.get(position).getRate()*2);
         rate.setText(aux);
 
         return v;

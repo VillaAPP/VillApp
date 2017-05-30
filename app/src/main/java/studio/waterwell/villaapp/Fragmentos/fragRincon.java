@@ -33,7 +33,6 @@ import studio.waterwell.villaapp.R;
 
 public class fragRincon extends Fragment {
 
-    private Button atras;
     private Button opinar;
     private Button ruta;
     private TextView nombre;
@@ -113,7 +112,6 @@ public class fragRincon extends Fragment {
         iOpiniones = null;
     }
 
-    // TODO: Falta cargar la foto del lugar.
     private void cargarVista(View v, boolean existe){
 
         opinar = (Button) v.findViewById(R.id.lugar_opinion);
@@ -161,7 +159,7 @@ public class fragRincon extends Fragment {
         opinar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOpiniones.darOpinion(misCoordenadas, lugar.obtenerCoordenadas());
+                iOpiniones.verDistancia(misCoordenadas, lugar.obtenerCoordenadas());
             }
         });
 
@@ -208,10 +206,14 @@ public class fragRincon extends Fragment {
         }
 
         if(i > 0)
-            rateTotal.setText("Puntuacion :" + Integer.toString(rate/i));
+            rateTotal.setText("Puntuacion :" + Integer.toString(rate/i*2));
 
     }
 
+    // Una vez que se ha dado la opinion, la actividad llama a este metodo para cambiar le nombre del boton
+    public void modificarBoton(){
+        this.opinar.setText(R.string.lugar_opinion2);
+    }
 
 
 }

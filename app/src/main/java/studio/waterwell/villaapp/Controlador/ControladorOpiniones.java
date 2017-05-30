@@ -8,9 +8,11 @@ import studio.waterwell.villaapp.BD.DAOOpinion;
 import studio.waterwell.villaapp.BD.Opiniones;
 import studio.waterwell.villaapp.BD.WebService.CargarOpiniones;
 import studio.waterwell.villaapp.BD.WebService.CargarOpinionesUsuario;
+import studio.waterwell.villaapp.BD.WebService.GuardarOpinion;
 import studio.waterwell.villaapp.Modelo.IMisOpiniones;
 import studio.waterwell.villaapp.Modelo.IOpiniones;
 import studio.waterwell.villaapp.Modelo.MiOpinion;
+import studio.waterwell.villaapp.Modelo.Opinion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 
 /**
@@ -44,13 +46,16 @@ public class ControladorOpiniones {
         cargarOpiniones.execute(idLugar);
     }
 
-    // TODO: Falta guardar una nueva opinion en la bd interna y externa
-    public void guardarOpinion(Usuario usuario){}
+    public void guardarOpinion(Usuario usuario, MiOpinion miOpinion){
+        guardarOpinionInterna(miOpinion);
+        guardarOpinionExterna(usuario, miOpinion);
+    }
 
     public void obtenerOpinionesUsuarioExterna(Usuario usuario){
         CargarOpinionesUsuario cargarOpinionesUsuario = new CargarOpinionesUsuario(iMisOpiniones);
         cargarOpinionesUsuario.execute(usuario.getUserName());
     }
+
 
     public void obtenerOpinionesUsuarioInterna(Usuario usuario){
         Opiniones opiniones = new Opiniones(contexto, "Opiniones", null, 1);
@@ -68,5 +73,16 @@ public class ControladorOpiniones {
         Opiniones opiniones = new Opiniones(contexto, "Opiniones", null, 1);
         DAOOpinion daoOpinion = new DAOOpinion(opiniones);
         daoOpinion.guardarOpiniones(lista);
+    }
+
+    private void guardarOpinionInterna(MiOpinion opinion){
+        Opiniones opiniones = new Opiniones(contexto, "Opiniones", null, 1);
+        DAOOpinion daoOpinion = new DAOOpinion(opiniones);
+        daoOpinion.guardarOpinion(opinion);
+    }
+
+    private void guardarOpinionExterna(Usuario usuario, MiOpinion opinion){
+        GuardarOpinion guardarOpinion = new GuardarOpinion(usuario.getUserName());
+        guardarOpinion.execute(opinion);
     }
 }

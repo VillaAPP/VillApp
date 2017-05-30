@@ -10,13 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
 import studio.waterwell.villaapp.Modelo.AdaptadorLista;
 import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
+import studio.waterwell.villaapp.Modelo.MiOpinion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
 
@@ -29,6 +27,8 @@ public class FragMisRincones extends Fragment {
     private Usuario usuario;
     private int posicion;
     private ICambios cambios;
+
+    private ArrayList<Lugar> lugares;
 
     public FragMisRincones() {
         // Required empty public constructor
@@ -58,9 +58,8 @@ public class FragMisRincones extends Fragment {
         View v = inflater.inflate(R.layout.fragment_rincones, container, false);
         lista = (ListView) v.findViewById(R.id.listas_rincones);
 
-        ArrayList<Lugar> aux = getArguments().getParcelableArrayList("lugares");
+        lugares = getArguments().getParcelableArrayList("lugares");
         ArrayList<Lugar> lugaresVistados = new ArrayList<Lugar>();
-
 
         // Recorre la lista de sitios buscando los votados por el usuario
         if(usuario.getOpiniones() != null){
@@ -69,9 +68,9 @@ public class FragMisRincones extends Fragment {
                 boolean encontrado = false;
                 int index = 0;
                 while(!encontrado){
-                    if(aux.get(index).getId().equals(id)){
+                    if(lugares.get(index).getId().equals(id)){
                         encontrado = true;
-                        lugaresVistados.add(aux.get(index));
+                        lugaresVistados.add(lugares.get(index));
                     }
                     else
                         index++;
@@ -128,6 +127,32 @@ public class FragMisRincones extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         cambios = (ICambios) getActivity();
+    }
+
+    // Cuando el usuario ha creado una opinion se llama esto desde la actividad principal
+    public void actualizarLugares(Usuario usuario){
+        this.usuario = usuario;
+
+        ArrayList<Lugar> lugaresVistados = new ArrayList<Lugar>();
+        // Recorre la lista de sitios buscando los votados por el usuario
+        if(this.usuario.getOpiniones() != null){
+            for(int i = 0; i < this.usuario.getOpiniones().size(); i++){
+                String id = this.usuario.getOpiniones().get(i).getId();
+                boolean encontrado = false;
+                int index = 0;
+                while(!encontrado){
+                    if(lugares.get(index).getId().equals(id)){
+                        encontrado = true;
+                        lugaresVistados.add(lugares.get(index));
+                    }
+                    else
+                        index++;
+                }
+            }
+        }
+        lugaresVistados.remove(lugaresVistados.size()-1);
+        adaptador.setLista(lugaresVistados);
+        adaptador.notifyDataSetChanged();
     }
 
 }

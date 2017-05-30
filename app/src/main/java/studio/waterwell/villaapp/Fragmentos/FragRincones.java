@@ -26,7 +26,6 @@ public class FragRincones extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static FragRincones newInstance(ArrayList<Lugar> lugares) {
         FragRincones fragment = new FragRincones();
         Bundle args = new Bundle();

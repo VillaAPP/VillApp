@@ -48,7 +48,18 @@ public class Usuario implements Parcelable {
     }
 
     public void addOpinion(MiOpinion opinion){
-        opiniones.add(opinion);
+        int i = 0, aux = opiniones.size();
+        boolean encontrado = false;
+
+        while(i < aux && !encontrado){
+            if(opiniones.get(i).getId().equals(opinion.getId()))
+                encontrado = true;
+            else
+             i++;
+        }
+
+        if(!encontrado)
+            opiniones.add(opinion);
     }
 
     protected Usuario(Parcel in) {

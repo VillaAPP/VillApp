@@ -163,7 +163,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
 
     // Recoge los datos de la actividad Lugar
-    // TODO: Falta ver cuando se ha hecho una opinion
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -176,6 +175,8 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
                 Lugar  modificado = bundle.getParcelable("lugar");
                 marcado.setTag(modificado);
                 usuario = bundle.getParcelable("usuario");
+
+                cambios.modificarLugaresVistiados(usuario);
 
                 int opcion = bundle.getInt("opcion");
 

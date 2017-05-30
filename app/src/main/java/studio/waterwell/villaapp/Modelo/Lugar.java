@@ -115,6 +115,10 @@ public class Lugar implements Parcelable{
         this.opiniones = opiniones;
     }
 
+    public void setOpinion(Opinion opinion){
+        this.opiniones.add(opinion);
+    }
+
     public ArrayList<Opinion> getOpiniones(){
         return opiniones;
     }

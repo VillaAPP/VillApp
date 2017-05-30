@@ -16,5 +16,7 @@ public interface IOpiniones {
     // Al clicar en in atras en el fragmento de rincon se vuelve a la actividad del mapa con las coordenadas
     public void cargarRuta();
 
-    public void darOpinion(LatLng l1, LatLng l2);
+    public void verDistancia(LatLng l1, LatLng l2);
+
+    public void darOpinion(MiOpinion opinion);
 }

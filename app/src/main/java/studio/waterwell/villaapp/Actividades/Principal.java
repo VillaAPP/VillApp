@@ -205,4 +205,10 @@ public class Principal extends AppCompatActivity
         controlador.obtenerRuta(this, ubicacion, miPosicion);
     }
 
+    @Override
+    public void modificarLugaresVistiados(Usuario usuario) {
+        this.usuario = usuario;
+        fragMisRincones.actualizarLugares(usuario);
+    }
+
 }

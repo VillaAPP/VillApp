@@ -26,6 +26,7 @@ import studio.waterwell.villaapp.Modelo.AdaptadorOpiniones;
 import studio.waterwell.villaapp.Modelo.ILugar;
 import studio.waterwell.villaapp.Modelo.IOpiniones;
 import studio.waterwell.villaapp.Modelo.Lugar;
+import studio.waterwell.villaapp.Modelo.MiOpinion;
 import studio.waterwell.villaapp.Modelo.Opinion;
 import studio.waterwell.villaapp.Modelo.Usuario;
 import studio.waterwell.villaapp.R;
@@ -99,25 +100,18 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
         finish();
     }
 
-    // TODO: Hay que acabar lo de llamar al fragmento
     @Override
-    public void darOpinion(LatLng l1, LatLng l2) {
+    public void verDistancia(LatLng l1, LatLng l2) {
         Toast toast;
 
         if(existe){
             cambiarFragmento(fragOpinion, fragRincon);
-            // Meter en fragOpinion todas las cosas que sean necesarias
-            //toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
-            //toast.show();
             atras = true;
         }
 
         else{
             if(calcularDistancia(l1.latitude, l1.longitude, l2.latitude, l2.longitude)){
                 cambiarFragmento(fragOpinion, fragRincon);
-                // Meter en fragOpinion todas las cosas que sean necesarias
-                //toast = Toast.makeText(getApplicationContext(), "Esto no esta implementado aun.", Toast.LENGTH_SHORT);
-                //toast.show();
                 atras = true;
 
             }
@@ -127,6 +121,25 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
             }
         }
     }
+
+
+
+    // Este metodo se llama desde fragOpinion cuando el usuario ha opinado sobre un lugar
+    @Override
+    public void darOpinion(MiOpinion opinion) {
+        usuario.addOpinion(opinion);
+        Opinion op = new Opinion(usuario.getUserName(),opinion.getRate(), opinion.getOpinion());
+        lugar.setOpinion(op);
+        fragOpinion.modificarVista();
+        fragRincon.modificarBoton();
+        fragRincon.cargarOpiniones(lugar.getOpiniones());
+        cambiarFragmento(fragRincon, fragOpinion);
+        atras = false;
+        existe = true;
+        Toast toast = Toast.makeText(getApplicationContext(), "Opinion guardada con exito", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 
     private void cargarDatos(){
         Bundle bundle = getIntent().getBundleExtra("bundle");
