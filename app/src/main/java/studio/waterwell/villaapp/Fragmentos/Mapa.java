@@ -175,17 +175,14 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
 
                 Lugar  modificado = bundle.getParcelable("lugar");
                 marcado.setTag(modificado);
+                usuario = bundle.getParcelable("usuario");
+
                 int opcion = bundle.getInt("opcion");
 
                 // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
-                if(opcion == RUTA){
-                    double lat = bundle.getDouble("latitud");
-                    double lng = bundle.getDouble("longitud");
-                    cambios.mandarCoordenadas(new LatLng(lat,lng));
-                }
+                if(opcion == RUTA)
+                    cambios.mandarCoordenadas(modificado.obtenerCoordenadas());
 
-                else
-                    usuario = bundle.getParcelable("usuario");
             }
         }
 

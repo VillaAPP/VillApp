@@ -77,10 +77,9 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
 
         Bundle bundle = new Bundle();
         bundle.putInt("opcion", 2);
-        bundle.putDouble("latitud", lugar.getLatitud());
-        bundle.putDouble("longitud", lugar.getLongitud());
+        bundle.putParcelable("lugar", lugar);
+        bundle.putParcelable("usuario", usuario);
         i.putExtra("bundle", bundle);
-
         setResult(RESULT_OK, i);
 
         finish();
@@ -95,7 +94,6 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
         bundle.putParcelable("lugar", lugar);
         bundle.putParcelable("usuario", usuario);
         i.putExtra("bundle", bundle);
-
         setResult(RESULT_OK, i);
 
         finish();
