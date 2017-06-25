@@ -35,7 +35,6 @@ public class fragRincon extends Fragment {
 
     private Button opinar;
     private Button ruta;
-    private TextView nombre;
     private TextView direccion;
     private TextView descripcion;
     private TextView rateTotal;
@@ -121,7 +120,6 @@ public class fragRincon extends Fragment {
 
         ruta = (Button) v.findViewById(R.id.lugar_ruta);
 
-        nombre = (TextView) v.findViewById(R.id.lugar_nombre);
         direccion = (TextView) v.findViewById(R.id.lugar_direccion);
         descripcion = (TextView) v.findViewById(R.id.lugar_descripcion);
         rateTotal = (TextView) v.findViewById(R.id.lugar_rate);
@@ -132,7 +130,6 @@ public class fragRincon extends Fragment {
 
         calcularRate();
 
-        nombre.setText(lugar.getNombre());
         direccion.setText(lugar.getDireccion());
 
         descripcion.setText(lugar.getDescripcion());

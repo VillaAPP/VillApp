@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -35,7 +36,7 @@ import java.util.List;
 import studio.waterwell.villaapp.Modelo.ICambios;
 import studio.waterwell.villaapp.Modelo.Lugar;
 import studio.waterwell.villaapp.Modelo.Usuario;
-
+import studio.waterwell.villaapp.R;
 
 
 public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
@@ -97,7 +98,6 @@ public class Mapa extends SupportMapFragment implements OnMapReadyCallback{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = super.onCreateView(inflater, container, savedInstanceState);
         getMapAsync(this);
         return v;

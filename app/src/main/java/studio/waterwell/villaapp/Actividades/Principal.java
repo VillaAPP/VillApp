@@ -1,6 +1,7 @@
 package studio.waterwell.villaapp.Actividades;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -210,5 +211,7 @@ public class Principal extends AppCompatActivity
         this.usuario = usuario;
         fragMisRincones.actualizarLugares(usuario);
     }
+
+
 
 }

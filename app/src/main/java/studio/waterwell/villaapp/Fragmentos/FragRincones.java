@@ -1,6 +1,8 @@
 package studio.waterwell.villaapp.Fragmentos;
 
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +24,8 @@ public class FragRincones extends Fragment {
     private ICambios cambios;
     private ListView lista;
     private AdaptadorLista adaptador;
+
+    private ViewGroup container;
     public FragRincones() {
         // Required empty public constructor
     }
@@ -43,7 +47,7 @@ public class FragRincones extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        this.container=container;
         View v = inflater.inflate(R.layout.fragment_rincones, container, false);
         lista = (ListView) v.findViewById(R.id.listas_rincones);
 

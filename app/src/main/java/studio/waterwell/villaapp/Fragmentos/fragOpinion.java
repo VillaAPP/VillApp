@@ -145,7 +145,7 @@ public class fragOpinion extends Fragment {
         this.texto_opinion.setVisibility(View.INVISIBLE);
         this.view_opinion.setVisibility(View.VISIBLE);
         this.view_opinion.setText(opinion);
-        this.puntuacion.setRating((float)puntuacion/2);
+        this.puntuacion.setRating((float)puntuacion);
         this.puntuacion.setEnabled(false);
         this.enviar_button.setVisibility(View.INVISIBLE);
         this.reset_button.setVisibility(View.INVISIBLE);

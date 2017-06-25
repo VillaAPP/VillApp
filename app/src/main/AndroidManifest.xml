@@ -19,21 +19,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA0ZT_DPBr2ZkxukV2WZDAOpUwBx-sZwnQ" />
 
-        <activity android:name=".Actividades.MainActivity">
+        <activity android:name=".Actividades.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Actividades.Credenciales">
+        <activity android:name=".Actividades.Credenciales"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.credenciales" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Actividades.CargaDatosLogin">
+        <activity android:name=".Actividades.CargaDatosLogin"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.datosLogin" />
 
@@ -43,14 +46,16 @@
         <activity
             android:name=".Actividades.Principal"
             android:label="@string/title_activity_principal"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.principal" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Actividades.LugarClicado">
+        <activity android:name=".Actividades.LugarClicado"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.lugar" />
 

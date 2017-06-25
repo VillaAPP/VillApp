@@ -1,7 +1,9 @@
 package studio.waterwell.villaapp.Fragmentos;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,8 @@ public class FragMisRincones extends Fragment {
 
     private ArrayList<Lugar> lugares;
 
+    private ViewGroup container;
+
     public FragMisRincones() {
         // Required empty public constructor
     }
@@ -54,7 +58,7 @@ public class FragMisRincones extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        this.container = container;
         View v = inflater.inflate(R.layout.fragment_rincones, container, false);
         lista = (ListView) v.findViewById(R.id.listas_rincones);
 
@@ -150,9 +154,10 @@ public class FragMisRincones extends Fragment {
                 }
             }
         }
-        lugaresVistados.remove(lugaresVistados.size()-1);
+        //lugaresVistados.remove(lugaresVistados.size()-1);
         adaptador.setLista(lugaresVistados);
         adaptador.notifyDataSetChanged();
     }
+
 
 }

@@ -54,6 +54,7 @@ public class LugarClicado extends AppCompatActivity implements IOpiniones, ILuga
         setContentView(R.layout.activity_lugar_clicado);
 
         cargarDatos();
+        getSupportActionBar().setTitle(lugar.getNombre());
     }
 
     @Override

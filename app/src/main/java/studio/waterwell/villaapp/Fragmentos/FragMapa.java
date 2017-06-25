@@ -1,6 +1,8 @@
 package studio.waterwell.villaapp.Fragmentos;
 
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,7 @@ public class FragMapa extends Fragment {
     private Button boton;
     private Button boton2;
     private ICambios cambios;
+    private ViewGroup container;
 
 
     public FragMapa() {
@@ -52,6 +55,8 @@ public class FragMapa extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        this.container = container;
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mapa2, container, false);
 
@@ -104,4 +109,5 @@ public class FragMapa extends Fragment {
         super.onActivityCreated(savedInstanceState);
         cambios = (ICambios) getActivity();
     }
+
 }
