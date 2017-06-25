@@ -11,6 +11,10 @@
             android:id="@+id/nav_lista_visitados"
             android:icon="@drawable/ic_menu_share"
             android:title="@string/navigation_mis_rincones" />
+        <item
+            android:id="@+id/nav_informacion"
+            android:icon="?android:attr/alertDialogIcon"
+            android:title="@string/navigation_informacion" />
     </group>
 
 </menu>

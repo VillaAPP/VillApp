@@ -1,0 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="studio.waterwell.villaapp.Fragmentos.FragInformacion">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarAlwaysDrawVerticalTrack="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="513dp"
+                tools:context="studio.waterwell.villaapp.Fragmentos.FragInformacion">
+
+                <!-- TODO: Update blank fragment layout -->
+
+                <TextView
+                    android:id="@+id/nombre_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="26dp"
+                    android:text="@string/app_name"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/desarrollada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nombre_app"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="17dp"
+                    android:text="Desarrolladores:" />
+
+                <TextView
+                    android:id="@+id/informacion_jose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/desarrollada"
+                    android:layout_marginTop="29dp"
+                    android:text="@string/jose"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/informacion_andres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/informacion_jose"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/andres"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/informacion_adrian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/informacion_andres"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/adrian"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/informacion_desarrollo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/informacion_universidad"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="25dp"
+                    android:text="@string/informacion_desarrollo"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/informacion_universidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/informacion_year"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/informacion_universidad"
+                    android:textAlignment="center"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/informacion_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/informacion_year"
+                    android:textAlignment="center"
+                    android:textStyle="italic" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/informacion_desarrollo"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/informacion_adrian"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.8"
+                    app:srcCompat="@drawable/minimapa" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

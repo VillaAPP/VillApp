@@ -2,11 +2,18 @@
 
     <string name="app_name">VillaApp</string>
     <string name="title_activity_principal">VillaApp</string>
+    <string name="jose">José Javier Escudero Gómez - @efectoDopler</string>
+    <string name="andres">Andrés Pascual Contreras - @DrasenPC</string>
+    <string name="adrian">Adrián Muñoz Gámez - @Nadrixa</string>
+    <string name="informacion_desarrollo"> Esta aplicación ha sido desarrollada para la asignatura Programación de Aplicaciones para Dispositivos Móviles (PAD)</string>
+    <string name="informacion_universidad">Facultad de Informatica - Universidad Complutense de Madrid</string>
+    <string name="informacion_year">2017</string>
 
     <string name="navigation_drawer_open">Abrir menu lateral</string>
     <string name="navigation_drawer_close">Cerrar menu lateral</string>
     <string name="navigation_rincones">Rincones de la villa</string>
     <string name="navigation_mis_rincones">Lugares visitados</string>
+    <string name="navigation_informacion">Información sobre la app</string>
 
     <string name="txt_progresBar_inicio">Cargando datos del sistema</string>
     <string name="txt_progresBar_login">Cargando datos del usuario</string>

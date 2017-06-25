@@ -23,6 +23,7 @@ import java.util.List;
 
 import studio.waterwell.villaapp.Controlador.Controlador;
 import studio.waterwell.villaapp.Controlador.ControladorLugar;
+import studio.waterwell.villaapp.Fragmentos.FragInformacion;
 import studio.waterwell.villaapp.Fragmentos.FragMapa;
 import studio.waterwell.villaapp.Fragmentos.FragMisRincones;
 import studio.waterwell.villaapp.Fragmentos.FragRincones;
@@ -52,6 +53,7 @@ public class Principal extends AppCompatActivity
     private FragMapa fragMapa;
     private FragRincones fragRincones;
     private FragMisRincones fragMisRincones;
+    private FragInformacion fragInformacion;
     // Se encarga de ir atrás al pulsar atras o cerrar la app
     private boolean atras;
 
@@ -101,14 +103,17 @@ public class Principal extends AppCompatActivity
         fragMapa = FragMapa.newInstance(this.lugares, this.usuario);
         fragRincones = FragRincones.newInstance(this.lugares);
         fragMisRincones = FragMisRincones.newInstance(lugares, usuario);
+        fragInformacion = FragInformacion.newInstance();
 
         // Los coloco en el controlador de fragmentos y oculto todos menos el del mapa
         fragmentManager.beginTransaction()
                 .add(R.id.fragmentoPpal, fragMapa)
                 .add(R.id.fragmentoPpal, fragRincones)
                 .add(R.id.fragmentoPpal, fragMisRincones)
+                .add(R.id.fragmentoPpal, fragInformacion)
                 .hide(fragRincones)
                 .hide(fragMisRincones)
+                .hide(fragInformacion)
                 .commit();
 
         // La variable que indica que hay que mover el mapa se pone a falso
@@ -143,10 +148,14 @@ public class Principal extends AppCompatActivity
         atras = true;
 
         if (id == R.id.nav_lista_lugares)
-            cambiarFragmento(fragRincones,fragMapa,fragMisRincones, getString(R.string.fragmento_rincones));
+            cambiarFragmento(fragRincones,fragMapa,fragMisRincones, fragInformacion, getString(R.string.fragmento_rincones));
 
         else if (id == R.id.nav_lista_visitados)
-            cambiarFragmento(fragMisRincones,fragMapa,fragRincones, getString(R.string.fragmento_mis_rincones));
+            cambiarFragmento(fragMisRincones,fragMapa,fragRincones, fragInformacion, getString(R.string.fragmento_mis_rincones));
+
+        else if (id == R.id.nav_informacion)
+            cambiarFragmento(fragInformacion, fragMapa, fragRincones, fragMisRincones, "Acerca de");
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -154,11 +163,12 @@ public class Principal extends AppCompatActivity
     }
 
     // Se encarga de cambiar los fragmentos de la actividad
-    private void cambiarFragmento(Fragment mostrar,Fragment ocultar1,Fragment ocultar2, String nombre){
+    private void cambiarFragmento(Fragment mostrar,Fragment ocultar1,Fragment ocultar2, Fragment ocultar3, String nombre){
         fragmentManager.beginTransaction()
                 .show(mostrar)
                 .hide(ocultar1)
                 .hide(ocultar2)
+                .hide(ocultar3)
                 .commit();
         getSupportActionBar().setTitle(nombre);
     }
@@ -174,7 +184,7 @@ public class Principal extends AppCompatActivity
         // Si no, se simula ir atras cargando el fragmento del mapa
         else{
             atras = false;
-            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+            cambiarFragmento(fragMapa,fragRincones,fragMisRincones, fragInformacion, getString(R.string.fragmento_mapa));
         }
     }
 
@@ -183,7 +193,7 @@ public class Principal extends AppCompatActivity
     public void mandarCoordenadas(LatLng latLng) {
         atras = false;
         ubicacion = latLng;
-        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, fragInformacion, getString(R.string.fragmento_mapa));
         fragMapa.moverUbicacion(latLng);
         LatLng miUbicacion = fragMapa.obtenerMiUbicacion();
         controlador.obtenerRuta(this, ubicacion, miUbicacion);
@@ -192,7 +202,7 @@ public class Principal extends AppCompatActivity
     @Override
     public void cambiarCamara(LatLng rincon) {
         fragMapa.moverUbicacion(rincon);
-        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, getString(R.string.fragmento_mapa));
+        cambiarFragmento(fragMapa,fragRincones,fragMisRincones, fragInformacion, getString(R.string.fragmento_mapa));
     }
 
     // Manda desde el AsynTack ObtenerRuta el conjunto de puntos que dibujan en el mapa la ruta desde mi ubicacion hasta el destino
