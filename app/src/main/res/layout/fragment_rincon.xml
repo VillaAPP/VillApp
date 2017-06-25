@@ -34,7 +34,6 @@
                     android:id="@+id/lugar_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/lugar_opinion"
                     android:layout_below="@+id/lugar_direccion"
                     android:layout_marginStart="13dp"
                     android:text="Puntuacion : Sin puntuaciones de usuario"
@@ -45,7 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/lugar_rate"
-                    android:layout_below="@+id/lugar_nombre"
                     android:text="TextView"
                     android:textStyle="italic" />
             </RelativeLayout>
